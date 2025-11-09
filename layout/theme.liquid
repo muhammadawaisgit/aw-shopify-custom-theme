@@ -4,8 +4,37 @@
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
+    {% # Font CSS %}  
+    
+    {{ 'fonts/Satoshi/Satoshi-Variable.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2' }}
+
+    <style>
+      {% # Montserrat Font CSS %}  
+      @font-face {
+        font-family: 'Montserrat';
+        src: url({{ 'fonts/Montserrat/Montserrat-VariableFont_wght.ttf' | asset_url }}) format('truetype');
+            font-weight: 300 900;
+            font-display: swap;
+            font-style: normal;
+      }  
+
+      {% # Satoshi Font CSS %}  
+      @font-face {
+        font-family: 'Satoshi';
+        src: url({{ 'fonts/Satoshi/Satoshi-Variable.woff2' | asset_url }}) format('woff2'),
+            url({{ 'fonts/Satoshi/Satoshi-Variable.woff' | asset_url }}) format('woff'),
+            url({{ 'fonts/Satoshi/Satoshi-Variable.ttf' | asset_url }}) format('truetype');
+            font-weight: 300 900;
+            font-display: swap;
+            font-style: normal;
+      }  
+    </style> 
+
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+
+    {% # Page Builder CSS %}
+    <link rel="stylesheet" href="{{ 'page-builder.css' | asset_url }}" />
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}

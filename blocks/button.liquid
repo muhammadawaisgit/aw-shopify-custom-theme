@@ -1,0 +1,840 @@
+<style>
+    #shopify-block-{{ block.id }} {
+        {% if block.settings.button_alignment == 'justify' %}
+            width: 100%;
+        {% endif %}
+
+        margin-left: {% if block.settings.button_alignment == 'center' or block.settings.button_alignment == 'right' %} auto {% else %} 0 {% endif %};
+        margin-right: {% if block.settings.button_alignment == 'center' or block.settings.button_alignment == 'left' %} auto {% else %} 0 {% endif %};
+    }
+
+    #shopify-block-{{ block.id }} a {
+        display: flex;
+        align-items: center;
+
+        color: {{ block.settings.text_color }};
+        background-color: {{ block.settings.background_color }};
+
+        {% if block.settings.button_alignment == 'justify' %}
+            width: 100%;
+            justify-content: center;
+        {% endif %}
+
+        font-family: {{ block.settings.font_family }};
+        font-size: {{ block.settings.font_size }}{{ block.settings.font_unit }};
+        font-weight: {{ block.settings.font_weight }};
+        text-transform: {{ block.settings.text_transform }};
+        font-style: {{ block.settings.font_style }};
+        text-decoration: {{ block.settings.text_decoration }};
+        line-height: {{ block.settings.line_height }};
+        letter-spacing: {{ block.settings.letter_spacing }}px;
+
+        border-style: {{ block.settings.border_type }};
+        border-color: {{ block.settings.border_color }};
+
+        /* Border Width */
+        {% if block.settings.custom_borders == true %}
+            border-width: {{ block.settings.border_top }}px {{ block.settings.border_right }}px {{ block.settings.border_bottom }}px {{ block.settings.border_left }}px;
+        {% else %}
+            border-width: {{ block.settings.border_all }}px;
+        {% endif %}
+
+        /* Border Radius */
+        {% if block.settings.custom_border_radius == true %}
+            border-radius: {{ block.settings.radius_top }}px {{ block.settings.radius_right }}px {{ block.settings.radius_bottom }}px {{ block.settings.radius_left }}px;
+        {% else %}
+            border-radius: {{ block.settings.border_radius_all }}px;
+        {% endif %}
+        
+        box-shadow: {% if block.settings.box_shadow_enabled %} {{ block.settings.box_shadow_h_offset }}px {{ block.settings.box_shadow_v_offset }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }} {% if block.settings.box_shadow_position == 'inset' %} inset {% endif %} {% else %} none {% endif %};
+
+        /* Margin */
+        {% if block.settings.margin_type == 'custom' %}
+            margin: {{ block.settings.margin_all }}px;
+        {% elsif block.settings.margin_type == 'separate' %}
+            margin: {{ block.settings.margin_top }}px {{ block.settings.margin_right }}px {{ block.settings.margin_bottom }}px {{ block.settings.margin_left }}px;
+        {% else %}
+            margin: 0 auto;
+        {% endif %}
+
+        /* Padding */
+        {% if block.settings.padding_type == 'custom' %}
+            padding: {{ block.settings.padding_all }}px;
+        {% elsif block.settings.padding_type == 'separate' %}
+            padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
+        {% else %}
+            padding: 0px;
+        {% endif %}
+
+        /* Self Align */
+        align-self: {{ block.settings.align_self }};
+
+        /* Width */
+        {% if block.settings.custom_width_enable and block.settings.button_alignment != 'justify' %}
+            width: {{ block.settings.custom_width }}{{ block.settings.custom_width_unit }};
+        {% endif %}
+    }
+
+    #shopify-block-{{ block.id }} a:hover {
+        cursor: pointer;
+    }
+</style>
+
+<a
+    {% if block.settings.enable_link %}
+        href="{{ block.settings.button_link }}" 
+    {% endif %}
+
+    {% if block.settings.open_in_new_tab %} target="_blank" {% endif %}
+    {% if block.settings.add_nofollow %} rel="nofollow" {% endif %}
+>
+    {% if block.settings.enable_icon and block.settings.icon_position == 'left' %}
+        <img 
+            src="{{ block.settings.button_icon | image_url}}" 
+            alt="{{ block.settings.button_icon.alt | escape }}"
+            width="{{ block.settings.button_icon.width }}"
+            height="{{ block.settings.button_icon.height }}"
+            style="margin-right: {{ block.settings.icon_spacing }}px;"
+        />
+    {% endif %}
+    
+    {{ block.settings.button_text }}
+    
+    {% if block.settings.enable_icon and block.settings.icon_position == 'right' %}
+        <img 
+            src="{{ block.settings.button_icon | image_url}}" 
+            alt="{{ block.settings.button_icon.alt | escape }}"
+            width="{{ block.settings.button_icon.width }}"
+            height="{{ block.settings.button_icon.height }}"
+            style="margin-left: {{ block.settings.icon_spacing }}px;"
+        />
+    {% endif %}
+</a>
+
+{% schema %}
+    {
+        "name": "Button",
+        "class": "pb-button-block",
+        "settings": [
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button Text",
+                "default": "Click Me"
+            },
+            {
+                "type": "checkbox",
+                "label": "Enable Link",
+                "id": "enable_link",
+                "default": false
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Link",
+                "visible_if": "{{ block.settings.enable_link == true }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Open in New Tab",
+                "id": "open_in_new_tab",
+                "default": false,
+                "visible_if": "{{ block.settings.enable_link == true }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Add Nofollow",
+                "id": "add_nofollow",
+                "default": false,
+                "visible_if": "{{ block.settings.enable_link == true }}"
+            },
+            {
+                "type": "header",
+                "content": "Icon Settings"
+            },
+            {
+                "type": "checkbox",
+                "label": "Enable Icon",
+                "id": "enable_icon",
+                "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "button_icon",
+                "label": "Button Icon",
+                "visible_if": "{{ block.settings.enable_icon == true }}"
+            },
+            {
+                "type": "select",
+                "id": "icon_position",
+                "label": "Icon Position",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"
+                    }
+                ],
+                "default": "left",
+                "visible_if": "{{ block.settings.enable_icon == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Icon Spacing",
+                "id": "icon_spacing",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "default": 8,
+                "unit": "px",
+                "visible_if": "{{ block.settings.enable_icon == true }}"
+            },
+
+            // Button Styles
+            {
+                "type": "header",
+                "content": "Button Styles"
+            },
+
+            // Button Alignment
+            {
+                "type": "select",
+                "label": "Alignment",
+                "id": "button_alignment",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "center",
+                        "label": "Center"
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"
+                    },
+                    {
+                        "value": "justify",
+                        "label": "Justified"
+                    }
+                ],  
+            },
+
+            // Typography Settings
+            {
+                "type": "header",
+                "content": "Typography"
+            },
+            {
+                "type": "select",
+                "id": "font_family",
+                "label": "Font Family",
+                "options": [
+                    {
+                        "value": "'Work Sans', sans-serif",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "Montserrat ,'Work Sans', sans-serif",
+                        "label": "Montserrat"
+                    },
+                    {
+                        "value": "Satoshi,sans-serif",
+                        "label": "Satoshi"
+                    },
+                    {
+                        "value": "serif",
+                        "label": "Serif"
+                    },
+                    {
+                        "value": "sans-serif",
+                        "label": "Sans Serif"
+                    },
+                    {
+                        "value": "monospace",
+                        "label": "Monospace"
+                    },
+                ],
+                "default": "Satoshi,sans-serif"
+            },
+            {
+                "type": "select",
+                "label": "Unit",
+                "id": "font_unit",
+                "options": [
+                    {
+                        "value": "px",
+                        "label": "px"
+                    },
+                    {
+                        "value": "em",
+                        "label": "em"
+                    },
+                    {
+                        "value": "rem",
+                        "label": "rem"
+                    },
+                    {
+                        "value": "vw",
+                        "label": "vw"
+                    }
+                ],
+                "default": "px"
+            },
+            {
+                "type": "range",
+                "id": "font_size",
+                "label": "Font Size",
+                "min": 10,
+                "max": 100,
+                "step": 1,
+                "default": 16
+            },
+            {
+                "type": "select",
+                "id": "font_weight",
+                "label": "Weight",
+                "options": [
+                    {
+                        "value": "100",
+                        "label": "Thin"
+                    },
+                    {
+                        "value": "200",
+                        "label": "Extra Light"
+                    },
+                    {
+                        "value": "300",
+                        "label": "Light"
+                    },
+                    {
+                        "value": "400",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "500",
+                        "label": "Medium"
+                    },
+                    {
+                        "value": "600",
+                        "label": "Semi Bold"
+                    },
+                    {
+                        "value": "700",
+                        "label": "Bold"
+                    },
+                    {
+                        "value": "800",
+                        "label": "Extra Bold"
+                    },
+                    {
+                        "value": "900",
+                        "label": "Black"
+                    }
+                ],
+                "default": "500",
+            },
+            {
+                "type": "select",
+                "id": "text_transform",
+                "label": "Transform",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "uppercase",
+                        "label": "Uppercase"
+                    },
+                    {
+                        "value": "lowercase",
+                        "label": "Lowercase"
+                    },
+                    {
+                        "value": "capitalize",
+                        "label": "Capitalize"
+                    }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "select",
+                "id": "font_style",
+                "label": "Style",
+                "options": [
+                    {
+                        "value": "normal",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "italic",
+                        "label": "Italic"
+                    },
+                    {
+                        "value": "oblique",
+                        "label": "Oblique"
+                    }
+                ],
+                "default": "normal"
+            },
+            {
+                "type": "select",
+                "id": "text_decoration",
+                "label": "Decoration",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    },
+                    {
+                        "value": "underline",
+                        "label": "Underline"
+                    },
+                    {
+                        "value": "overline",
+                        "label": "Overline"
+                    },
+                    {
+                        "value": "line-through",
+                        "label": "Line Through"
+                    }
+                ],
+                "default": "none",
+            },
+            {
+                "type": "range",
+                "id": "line_height",
+                "label": "Line Height",
+                "min": 1,
+                "max": 5,
+                "step": 0.1,
+                "default": 1.2
+            },
+            {
+                "type": "range",
+                "id": "letter_spacing",
+                "label": "Letter Spacing",
+                "min": 0,
+                "max": 10,
+                "step": 0.1,
+                "default": 0
+            },
+
+            // Color Settings
+            {
+                "type": "header",
+                "content": "Color"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text Color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+
+            // Border Settings
+            {
+                "type": "header",
+                "content": "Border",
+            },
+            {
+                "type": "select",
+                "label": "Border Type",
+                "id": "border_type",
+                "options": [
+                    { "label": "None", "value": "none" },
+                    { "label": "Solid", "value": "solid" },
+                    { "label": "Double", "value": "double" },
+                    { "label": "Dotted", "value": "dotted" },
+                    { "label": "Dashed", "value": "dashed" },
+                    { "label": "Groove", "value": "groove" }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "color",
+                "label": "Border Color",
+                "id": "border_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Borders",
+                "id": "custom_borders",
+                "default": false,
+                "visible_if": "{{ block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range", 
+                "label": "Border",
+                "id": "border_all",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.border_type != 'none' and block.settings.custom_borders != true }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Top",
+                "id": "border_top",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Right",
+                "id": "border_right",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Bottom",
+                "id": "border_bottom",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Left",
+                "id": "border_left",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "header",
+                "content": "Border Radius"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Border Radius",
+                "id": "custom_border_radius",
+                "default": false
+            },
+            {
+                "type": "range",
+                "label": "Radius",
+                "id": "border_radius_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == false }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Top",
+                "id": "radius_top",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Right",
+                "id": "radius_right",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Bottom",
+                "id": "radius_bottom",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Left",
+                "id": "radius_left",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+            "type": "header",
+            "content": "Box Shadow"
+            },
+            {
+                "type": "checkbox",
+                "label": "Enable Box Shadow",
+                "id": "box_shadow_enabled",
+                "default": false
+            },
+            {
+                "type": "color",
+                "label": "Box Shadow Color",
+                "id": "box_shadow_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Horizontal Offset (px)",
+                "id": "box_shadow_h_offset",
+                "default": 0,
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Vertical Offset (px)",
+                "id": "box_shadow_v_offset",
+                "default": 0,
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Blur Radius (px)",
+                "id": "box_shadow_blur",
+                "default": 0,
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Spread Radius (px)",
+                "id": "box_shadow_spread",
+                "default": 0,
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+            {
+                "type": "select",
+                "label": "Position",
+                "id": "box_shadow_position",
+                "options": [
+                    { "label": "Outside", "value": "outset" },
+                    { "label": "Inside", "value": "inset" }
+                ],
+                "visible_if": "{{ block.settings.box_shadow_enabled == true }}"
+            },
+
+            // Layout Settings
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+
+            // Margin Settings
+            {
+                "type": "select",
+                "label": "Margin",
+                "id": "margin_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Margin",
+                "id": "margin_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'custom' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Top",
+                "id": "margin_top",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Right",
+                "id": "margin_right",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Bottom",
+                "id": "margin_bottom",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Left",
+                "id": "margin_left",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+
+            // Padding Settings
+            {
+                "type": "select",
+                "label": "Padding",
+                "id": "padding_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Padding",
+                "id": "padding_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.padding_type == 'custom' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Top",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Right",
+            "id": "padding_right",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Bottom",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Left",
+            "id": "padding_left",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+
+            // Align Self
+            {
+                "type": "select",
+                "label": "Align Self",
+                "id": "align_self",
+                "options": [
+                    { "label": "Auto", "value": "auto" },
+                    { "label": "Start", "value": "flex-start" },
+                    { "label": "Center", "value": "center" },
+                    { "label": "End", "value": "flex-end" },
+                    { "label": "Stretch", "value": "stretch" },
+                    { "label": "Baseline", "value": "baseline" }
+                ]
+            },
+
+            // Custom Width
+            {
+                "type": "header",
+                "content": "Custom Width"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Width",
+                "id": "custom_width_enable",
+                "default": false,
+                "visible_if": "{{ block.settings.button_alignment != 'justify' }}"
+            },
+            {
+                "type": "select",
+                "label": "Unit",
+                "id": "custom_width_unit",
+                "options": [
+                    {
+                        "value": "px",
+                        "label": "px"
+                    },
+                    {
+                        "value": "%",
+                        "label": "%"
+                    },
+                    {
+                        "value": "em",
+                        "label": "em"
+                    },
+                    {
+                        "value": "rem",
+                        "label": "rem"
+                    }
+                ],
+                "visible_if": "{{ block.settings.custom_width_enable == true }}",
+            },
+            {
+                "type": "number",
+                "label": "Width (px)",
+                "id": "custom_width",
+                "visible_if": "{{ block.settings.custom_width_enable == true }}",
+            }
+        ],
+        "presets": [
+            {
+                "name": "Button",
+                "category": "Builder Elements"
+            }
+        ]
+    }
+{% endschema %}

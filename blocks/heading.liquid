@@ -1,0 +1,595 @@
+{% assign heading_tag = block.settings.html_tag | default: 'h2' %}
+
+<style>
+    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+
+        color: {{ block.settings.text_color }};
+        text-align: {{ block.settings.text_alignment}};
+        font-family: {{ block.settings.font_family }};
+        font-size: {{ block.settings.font_size }}{{ block.settings.font_unit }};
+        font-weight: {{ block.settings.font_weight }};
+        text-transform: {{ block.settings.text_transform }};
+        font-style: {{ block.settings.font_style }};
+        text-decoration: {{ block.settings.text_decoration }};
+        line-height: {{ block.settings.line_height }};
+        letter-spacing: {{ block.settings.letter_spacing }}px;
+
+        /* Margin */
+        {% if block.settings.margin_type == 'custom' %}
+            margin: {{ block.settings.margin_all }}px;
+        {% elsif block.settings.margin_type == 'separate' %}
+            margin: {{ block.settings.margin_top }}px {{ block.settings.margin_right }}px {{ block.settings.margin_bottom }}px {{ block.settings.margin_left }}px;
+        {% else %}
+            margin: 0 auto;
+        {% endif %}
+
+        /* Padding */
+        {% if block.settings.padding_type == 'custom' %}
+            padding: {{ block.settings.padding_all }}px;
+        {% elsif block.settings.padding_type == 'separate' %}
+            padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
+        {% else %}
+            padding: 0px;
+        {% endif %}
+
+        /* Self Align */
+        align-self: {{ block.settings.align_self }};
+
+        /* Width */
+        {% if block.settings.custom_width_enable %}
+            max-width: {{ block.settings.custom_width }}{{ block.settings.custom_width_unit }};
+        {% endif %}
+    }
+</style>
+
+{% case heading_tag %}
+    {% when "h1" %}
+        <h1>
+    {% when 'h2' %}
+        <h2>
+    {% when 'h3' %}
+        <h3>
+    {% when 'h4' %}
+        <h4>
+    {% when 'h5' %}
+        <h5>
+    {% when 'h6' %}
+        <h6>
+    {% when 'p' %}
+        <p>
+    {% when 'div' %}
+        <div>
+    {% when 'span' %}
+        <span>
+{% endcase %}
+
+    {% if block.settings.link_enable %}
+        <a href="{{ block.settings.heading_link }}" {% if block.settings.link_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ block.settings.heading_text }}
+        </a>
+    {% else %}
+        {{ block.settings.heading_text }}
+    {% endif %}
+
+{% case heading_tag %}
+    {% when "h1" %}
+        </h1>
+    {% when 'h2' %}
+        </h2>
+    {% when 'h3' %}
+        </h3>
+    {% when 'h4' %}
+        </h4>
+    {% when 'h5' %}
+        </h5>
+    {% when 'h6' %}
+        </h6>
+    {% when 'p' %}
+        </p>
+    {% when 'div' %}
+        </div>
+    {% when 'span' %}
+        </span>
+{% endcase %}
+
+
+{% schema %}
+    {
+        "name": "Heading",
+        "class": "pb-heading-block",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading_text",
+                "label": "Heading Text",
+                "default": "Add Your Heading Text Here"
+            },
+            {
+                "type": "checkbox",
+                "label": "Link Enable",
+                "id": "link_enable",
+                "default": false
+            },
+            {
+                "type": "url",
+                "id": "heading_link",
+                "label": "Link",
+                "info": "This link will be applied if 'Link Enable' is checked.",
+                "visible_if": "{{ block.settings.link_enable == true }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Open Link in New Tab",
+                "id": "link_new_tab",
+                "default": false,
+                "visible_if": "{{ block.settings.link_enable == true }}",
+            },
+            {
+                "type": "select",
+                "id": "html_tag",
+                "label": "HTML Tag",
+                "options": [
+                    {
+                        "value": "h1",
+                        "label": "H1"
+                    },
+                    {
+                        "value": "h2",
+                        "label": "H2"
+                    },
+                    {
+                        "value": "h3",
+                        "label": "H3"
+                    },
+                    {
+                        "value": "h4",
+                        "label": "H4"
+                    },
+                    {
+                        "value": "h5",
+                        "label": "H5"
+                    },
+                    {
+                        "value": "h6",
+                        "label": "H6"
+                    },
+                    {
+                        "value": "p",
+                        "label": "Paragraph"
+                    },
+                    {
+                        "value": "div",
+                        "label": "Div"
+                    },
+                    {
+                        "value": "span",
+                        "label": "Span"
+                    }
+                ],
+                "default": "h2"
+            },
+
+            // Color
+            {
+                "type": "header",
+                "content": "Color"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text Color",
+                "default": "#000000"
+            },
+            // Alignment Settings
+            {
+                "type": "header",
+                "content": "Alignment"
+            },
+            {
+                "type": "select",
+                "id": "text_alignment",
+                "label": "Text Alignment",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "center",
+                        "label": "Center"
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"
+                    },
+                    {
+                        "value": "justify",
+                        "label": "Justified"
+                    }
+                ],
+                "default": "left",
+            },
+
+            // Typography Settings
+            {
+                "type": "header",
+                "content": "Typography"
+            },
+            {
+                "type": "select",
+                "id": "font_family",
+                "label": "Font Family",
+                "options": [
+                    {
+                        "value": "'Work Sans', sans-serif",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "Montserrat ,'Work Sans', sans-serif",
+                        "label": "Montserrat"
+                    },
+                    {
+                        "value": "Satoshi,sans-serif",
+                        "label": "Satoshi"
+                    },
+                    {
+                        "value": "serif",
+                        "label": "Serif"
+                    },
+                    {
+                        "value": "sans-serif",
+                        "label": "Sans Serif"
+                    },
+                    {
+                        "value": "monospace",
+                        "label": "Monospace"
+                    },
+                ],
+            },
+            {
+                "type": "select",
+                "label": "Unit",
+                "id": "font_unit",
+                "options": [
+                    {
+                        "value": "px",
+                        "label": "px"
+                    },
+                    {
+                        "value": "em",
+                        "label": "em"
+                    },
+                    {
+                        "value": "rem",
+                        "label": "rem"
+                    },
+                    {
+                        "value": "vw",
+                        "label": "vw"
+                    }
+                ],
+            },
+            {
+                "type": "range",
+                "id": "font_size",
+                "label": "Font Size",
+                "min": 10,
+                "max": 100,
+                "step": 1,
+                "default": 24
+            },
+            {
+                "type": "select",
+                "id": "font_weight",
+                "label": "Weight",
+                "options": [
+                    {
+                        "value": "100",
+                        "label": "Thin"
+                    },
+                    {
+                        "value": "200",
+                        "label": "Extra Light"
+                    },
+                    {
+                        "value": "300",
+                        "label": "Light"
+                    },
+                    {
+                        "value": "400",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "500",
+                        "label": "Medium"
+                    },
+                    {
+                        "value": "600",
+                        "label": "Semi Bold"
+                    },
+                    {
+                        "value": "700",
+                        "label": "Bold"
+                    },
+                    {
+                        "value": "800",
+                        "label": "Extra Bold"
+                    },
+                    {
+                        "value": "900",
+                        "label": "Black"
+                    }
+                ],
+                "default": "400",
+            },
+            {
+                "type": "select",
+                "id": "text_transform",
+                "label": "Transform",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "uppercase",
+                        "label": "Uppercase"
+                    },
+                    {
+                        "value": "lowercase",
+                        "label": "Lowercase"
+                    },
+                    {
+                        "value": "capitalize",
+                        "label": "Capitalize"
+                    }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "select",
+                "id": "font_style",
+                "label": "Style",
+                "options": [
+                    {
+                        "value": "normal",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "italic",
+                        "label": "Italic"
+                    },
+                    {
+                        "value": "oblique",
+                        "label": "Oblique"
+                    }
+                ],
+                "default": "normal"
+            },
+            {
+                "type": "select",
+                "id": "text_decoration",
+                "label": "Decoration",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    },
+                    {
+                        "value": "underline",
+                        "label": "Underline"
+                    },
+                    {
+                        "value": "overline",
+                        "label": "Overline"
+                    },
+                    {
+                        "value": "line-through",
+                        "label": "Line Through"
+                    }
+                ],
+            },
+            {
+                "type": "range",
+                "id": "line_height",
+                "label": "Line Height",
+                "min": 1,
+                "max": 5,
+                "step": 0.1,
+                "default": 1.2
+            },
+            {
+                "type": "range",
+                "id": "letter_spacing",
+                "label": "Letter Spacing",
+                "min": 0,
+                "max": 10,
+                "step": 0.1,
+                "default": 0
+            },
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+            {
+                "type": "select",
+                "label": "Margin",
+                "id": "margin_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Margin",
+                "id": "margin_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'custom' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Top",
+                "id": "margin_top",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Right",
+                "id": "margin_right",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Bottom",
+                "id": "margin_bottom",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Left",
+                "id": "margin_left",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "select",
+                "label": "Padding",
+                "id": "padding_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Padding",
+                "id": "padding_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.padding_type == 'custom' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Top",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Right",
+            "id": "padding_right",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Bottom",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Left",
+            "id": "padding_left",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+                "type": "select",
+                "label": "Align Self",
+                "id": "align_self",
+                "options": [
+                    { "label": "Auto", "value": "auto" },
+                    { "label": "Start", "value": "flex-start" },
+                    { "label": "Center", "value": "center" },
+                    { "label": "End", "value": "flex-end" },
+                    { "label": "Stretch", "value": "stretch" },
+                    { "label": "Baseline", "value": "baseline" }
+                ]
+            },
+            {
+                "type": "header",
+                "content": "Custom Width"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Width",
+                "id": "custom_width_enable",
+                "default": false
+            },
+            {
+                "type": "select",
+                "label": "Unit",
+                "id": "custom_width_unit",
+                "options": [
+                    {
+                        "value": "px",
+                        "label": "px"
+                    },
+                    {
+                        "value": "%",
+                        "label": "%"
+                    },
+                    {
+                        "value": "em",
+                        "label": "em"
+                    },
+                    {
+                        "value": "rem",
+                        "label": "rem"
+                    }
+                ],
+                "visible_if": "{{ block.settings.custom_width_enable == true }}",
+            },
+            {
+                "type": "number",
+                "label": "Width (px)",
+                "id": "custom_width",
+                "visible_if": "{{ block.settings.custom_width_enable == true }}",
+            }
+        ],
+        "presets": [
+            {
+                "name": "Heading",
+                "category": "Builder Elements"
+            }
+        ]
+    }
+{% endschema %}

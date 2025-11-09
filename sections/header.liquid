@@ -1,6 +1,7 @@
 <header>
   <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
+    {% comment %} {{ shop.name | link_to: routes.root_url }} {% endcomment %}
+    SHOP.CO
   </h2>
 
   <div class="header__menu">
@@ -25,6 +26,15 @@
 </header>
 
 {% stylesheet %}
+
+  .header__title {
+    font-family: integralcf, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+  }
+
   header {
     height: 5rem;
     display: flex;
@@ -47,8 +57,11 @@
   }
   header .header__menu,
   header .header__icons {
+    font-family: Satoshi, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
     display: flex;
-    gap: 1rem;
+    gap: 24px;
   }
 {% endstylesheet %}
 
