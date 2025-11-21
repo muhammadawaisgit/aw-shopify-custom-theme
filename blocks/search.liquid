@@ -1,0 +1,693 @@
+<style>
+    #shopify-block-{{ block.id }}{
+        display:flex;
+        align-items:center;
+        gap:{{ block.settings.search-gap }}px;
+
+        /* Custom Width */
+        {%- if block.settings.custom_width_enable == true -%}
+            width: {{ block.settings.width }}{{ block.settings.width_unit }};
+        {%- endif -%}
+
+        /* Margin */
+        {%- if block.settings.margin_type == 'custom' -%}
+            margin: {{ block.settings.margin_all }}px;
+        {%- elsif block.settings.margin_type == 'separate' -%}
+            margin: {{ block.settings.margin_top }}px {{ block.settings.margin_right }}px {{ block.settings.margin_bottom }}px {{ block.settings.margin_left }}px;
+        {%- else -%}
+            margin: 0 auto;
+        {%- endif -%}
+
+        /* Padding */
+        {%- if block.settings.padding_type == 'custom' -%}
+            padding: {{ block.settings.padding_all }}px;
+        {%- elsif block.settings.padding_type == 'separate' -%}
+            padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
+        {%- else -%}
+            padding: 0px;
+        {%- endif -%}
+
+        border-style: {{ block.settings.border_type }};
+        border-color: {{ block.settings.border_color }};
+
+        /* Border Width */
+        {%- if block.settings.custom_borders == true -%}
+            border-width: {{ block.settings.border_top }}px {{ block.settings.border_right }}px {{ block.settings.border_bottom }}px {{ block.settings.border_left }}px;
+        {%- else -%}
+            border-width: {{ block.settings.border_all }}px;
+        {%- endif -%}
+
+        /* Border Radius */
+        {%- if block.settings.custom_border_radius == true -%}
+            border-radius: {{ block.settings.radius_top }}px {{ block.settings.radius_right }}px {{ block.settings.radius_bottom }}px {{ block.settings.radius_left }}px;
+        {%- else -%}
+            border-radius: {{ block.settings.border_radius_all }}px;
+        {%- endif -%}
+
+        /* Background */
+        background-color: {{ block.settings.search-background }};
+    }
+
+    #shopify-block-{{ block.id }} svg, header #shopify-block-{{ block.id }} svg{
+        width: {{ block.settings.search-icon-size }}px;
+        {%- if block.settings.search_icon_type == 'default' -%}
+            color: {{ block.settings.search-icon-color }}
+        {%- endif -%}
+    }
+
+    #shopify-block-{{ block.id }} svg path{
+        {%- if block.settings.search_icon_type == 'svg' -%}
+            fill: {{ block.settings.search-icon-fill }};
+            stroke: {{ block.settings.search-icon-stroke }};
+        {%- endif -%}
+    }
+
+    #shopify-block-{{ block.id }} input{
+        all: unset;
+        width: calc(100% - {{ block.settings.search-icon-size }}px - {{ block.settings.search-icon-size }}px);
+        color: {{ block.settings.search-input-color }};
+        font-family: {{ block.settings.font_family }};
+        font-size: {{ block.settings.font_size }}{{ block.settings.font_unit }};
+        font-weight: {{ block.settings.font_weight }};
+        text-transform: {{ block.settings.text_transform }};
+        font-style: {{ block.settings.font_style }};
+        text-decoration: {{ block.settings.text_decoration }};
+        line-height: {{ block.settings.line_height }};
+        letter-spacing: {{ block.settings.letter_spacing }}px;
+    }
+</style>
+
+{%- if block.settings.search-icon-position == 'left' -%}
+    {%- if block.settings.search_icon_type == 'default' -%}
+        {{ 'icon-search.svg' | inline_asset_content }}
+    {%- else -%}
+        {{ block.settings.icon_svg_html }}
+    {%- endif -%}
+{%- endif -%}
+
+<input name="{{ block.id }}_search" class="search-input" type="text" placeholder="{{ block.settings.search-input-placeholder }}">
+
+{%- if block.settings.search-icon-position == 'right' -%}
+    {%- if block.settings.search_icon_type == 'default' -%}
+        {{ 'icon-search.svg' | inline_asset_content }}
+    {%- else -%}
+        {{ block.settings.icon_svg_html }}
+    {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+    {
+        "name": "Search",
+        "class": "pb-search-block",
+        "settings": [
+            {
+                "type": "select",
+                "label": "Icon Type",
+                "id": "search_icon_type",
+                "options": [
+                    { "label": "Default", "value": "default" },
+                    { "label": "Custom Svg", "value": "svg" },
+                ]
+            },
+
+            // SVG Html Input
+            {
+                "type": "html",
+                "id": "icon_svg_html",
+                "label": "Svg / Font Icon",
+                "info": "Paste your SVG code or font icon HTML here.",
+                "visible_if": "{{ block.settings.search_icon_type == 'svg' }}"
+            },
+            {
+                "type": "select",
+                "label": "Icon Position",
+                "id": "search-icon-position",
+                "options": [
+                    { "label": "Left", "value": "left" },
+                    { "label": "Right", "value": "right" },
+                ],
+                "default": "left"
+            },
+
+            // Icon Styling
+            {
+                "type": "header",
+                "content": "Icon Style"
+            },
+            {
+                "type": "range",
+                "label": "Gap",
+                "id": "search-gap",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "label": "Icon Size",
+                "id": "search-icon-size",
+                "min": 16,
+                "max": 60,
+                "unit": "px",
+                "default": 26
+            },
+            {
+                "type": "color",
+                "label": "Icon Color",
+                "id": "search-icon-color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.search_icon_type == 'default' }}"
+            },
+            {
+                "type": "color",
+                "label": "Icon Fill",
+                "id": "search-icon-fill",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.search_icon_type == 'svg' }}"
+            },
+            {
+                "type": "color",
+                "label": "Icon Stroke",
+                "id": "search-icon-stroke",
+                "default": "#00000000",
+                "visible_if": "{{ block.settings.search_icon_type == 'svg' }}"
+            },
+
+            // Typography Settings
+            {
+                "type": "header",
+                "content": "Typography"
+            },
+            {
+                "type": "text",
+                "label": "Placeholder",
+                "id": "search-input-placeholder",
+                "default": "Search for products..."
+            },
+            {
+                "type": "color",
+                "label": "Color",
+                "id": "search-input-color",
+                "default": "#000000"
+            },
+            {
+                "type": "select",
+                "id": "font_family",
+                "label": "Font Family",
+                "options": [
+                    {
+                        "value": "'Work Sans', sans-serif",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "Montserrat ,'Work Sans', sans-serif",
+                        "label": "Montserrat"
+                    },
+                    {
+                        "value": "Satoshi,sans-serif",
+                        "label": "Satoshi"
+                    },
+                    {
+                        "value": "serif",
+                        "label": "Serif"
+                    },
+                    {
+                        "value": "sans-serif",
+                        "label": "Sans Serif"
+                    },
+                    {
+                        "value": "monospace",
+                        "label": "Monospace"
+                    },
+                ],
+            },
+            {
+                "type": "select",
+                "label": "Unit",
+                "id": "font_unit",
+                "options": [
+                    {
+                        "value": "px",
+                        "label": "px"
+                    },
+                    {
+                        "value": "em",
+                        "label": "em"
+                    },
+                    {
+                        "value": "rem",
+                        "label": "rem"
+                    },
+                    {
+                        "value": "vw",
+                        "label": "vw"
+                    }
+                ],
+            },
+            {
+                "type": "range",
+                "id": "font_size",
+                "label": "Font Size",
+                "min": 10,
+                "max": 100,
+                "step": 1,
+                "default": 16
+            },
+            {
+                "type": "select",
+                "id": "font_weight",
+                "label": "Weight",
+                "options": [
+                    {
+                        "value": "100",
+                        "label": "Thin"
+                    },
+                    {
+                        "value": "200",
+                        "label": "Extra Light"
+                    },
+                    {
+                        "value": "300",
+                        "label": "Light"
+                    },
+                    {
+                        "value": "400",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "500",
+                        "label": "Medium"
+                    },
+                    {
+                        "value": "600",
+                        "label": "Semi Bold"
+                    },
+                    {
+                        "value": "700",
+                        "label": "Bold"
+                    },
+                    {
+                        "value": "800",
+                        "label": "Extra Bold"
+                    },
+                    {
+                        "value": "900",
+                        "label": "Black"
+                    }
+                ],
+                "default": "400",
+            },
+            {
+                "type": "select",
+                "id": "text_transform",
+                "label": "Transform",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "uppercase",
+                        "label": "Uppercase"
+                    },
+                    {
+                        "value": "lowercase",
+                        "label": "Lowercase"
+                    },
+                    {
+                        "value": "capitalize",
+                        "label": "Capitalize"
+                    }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "select",
+                "id": "font_style",
+                "label": "Style",
+                "options": [
+                    {
+                        "value": "normal",
+                        "label": "Normal"
+                    },
+                    {
+                        "value": "italic",
+                        "label": "Italic"
+                    },
+                    {
+                        "value": "oblique",
+                        "label": "Oblique"
+                    }
+                ],
+                "default": "normal"
+            },
+            {
+                "type": "select",
+                "id": "text_decoration",
+                "label": "Decoration",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    },
+                    {
+                        "value": "underline",
+                        "label": "Underline"
+                    },
+                    {
+                        "value": "overline",
+                        "label": "Overline"
+                    },
+                    {
+                        "value": "line-through",
+                        "label": "Line Through"
+                    }
+                ],
+            },
+            {
+                "type": "range",
+                "id": "line_height",
+                "label": "Line Height",
+                "min": 1,
+                "max": 5,
+                "step": 0.1,
+                "default": 1.2
+            },
+            {
+                "type": "range",
+                "id": "letter_spacing",
+                "label": "Letter Spacing",
+                "min": 0,
+                "max": 10,
+                "step": 0.1,
+                "default": 0
+            },
+
+            {
+                "type": "header",
+                "content": "Border",
+            },
+            {
+                "type": "select",
+                "label": "Border Type",
+                "id": "border_type",
+                "options": [
+                    { "label": "None", "value": "none" },
+                    { "label": "Solid", "value": "solid" },
+                    { "label": "Double", "value": "double" },
+                    { "label": "Dotted", "value": "dotted" },
+                    { "label": "Dashed", "value": "dashed" },
+                    { "label": "Groove", "value": "groove" }
+                ],
+                "default": "none"
+            },
+            {
+                "type": "color",
+                "label": "Border Color",
+                "id": "border_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Borders",
+                "id": "custom_borders",
+                "default": false,
+                "visible_if": "{{ block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range", 
+                "label": "Border",
+                "id": "border_all",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.border_type != 'none' and block.settings.custom_borders != true }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Top",
+                "id": "border_top",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Right",
+                "id": "border_right",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Bottom",
+                "id": "border_bottom",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "range",
+                "label": "Border Left",
+                "id": "border_left",
+                "min": 0,
+                "max": 20,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' }}"
+            },
+            {
+                "type": "header",
+                "content": "Border Radius"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Border Radius",
+                "id": "custom_border_radius",
+                "default": false
+            },
+            {
+                "type": "range",
+                "label": "Radius",
+                "id": "border_radius_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == false }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Top",
+                "id": "radius_top",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Right",
+                "id": "radius_right",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Bottom",
+                "id": "radius_bottom",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+            {
+                "type": "range",
+                "label": "Radius Left",
+                "id": "radius_left",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.custom_border_radius == true }}"
+            },
+
+            // Layout Settings
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+            {
+                "type": "color",
+                "label": "Background",
+                "id": "search-background",
+                "default": "#F0F0F0"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Width",
+                "id": "custom_width_enable",
+            },
+            {
+                "type": "select",
+                "label": "Width Unit",
+                "id": "width_unit",
+                "options": [
+                { "label": "px", "value": "px" },
+                { "label": "%", "value": "%" },
+                { "label": "vw", "value": "vw" }
+                ],
+                "default": "px",
+                "visible_if": "{{ block.settings.custom_width_enable == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Width",
+                "id": "width",
+                "placeholder": "1140",
+                "visible_if": "{{ block.settings.custom_width_enable == true }}"
+            },
+            {
+                "type": "select",
+                "label": "Margin",
+                "id": "margin_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Margin",
+                "id": "margin_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'custom' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Top",
+                "id": "margin_top",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Right",
+                "id": "margin_right",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Bottom",
+                "id": "margin_bottom",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "range",
+                "label": "Margin Left",
+                "id": "margin_left",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.margin_type == 'separate' }}"
+            },
+            {
+                "type": "select",
+                "label": "Padding",
+                "id": "padding_type",
+                "options": [
+                { "label": "Auto", "value": "auto" },
+                { "label": "Custom", "value": "custom" },
+                { "label": "Separate", "value": "separate" }
+                ],
+            },
+            {
+                "type": "range",
+                "label": "Padding",
+                "id": "padding_all",
+                "min": 0,
+                "max": 100,
+                "unit": "px",
+                "default": 0,
+                "visible_if": "{{ block.settings.padding_type == 'custom' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Top",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Right",
+            "id": "padding_right",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Bottom",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+            {
+            "type": "range",
+            "label": "Padding Left",
+            "id": "padding_left",
+            "min": 0,
+            "max": 100,
+            "unit": "px",
+            "default": 20,
+            "visible_if": "{{ block.settings.padding_type == 'separate' }}"
+            },
+        ],
+        "presets": [
+            {
+                "name": "Search",
+                "category": "t:general.header"
+            }
+        ]
+    }
+{% endschema %}

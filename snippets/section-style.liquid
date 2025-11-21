@@ -1,0 +1,123 @@
+<style>
+  #shopify-section-{{ section.id }} .inner-container{
+    display: {{ section.settings.container_layout }};
+    {%- if section.settings.container_layout == 'grid' -%}
+        grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
+        grid-template-rows: repeat({{ section.settings.grid_rows }}, auto);
+    {%- endif %}
+    max-width: {%- if section.settings.content_width == 'boxed' -%} {{section.settings.width}}{{ section.settings.width_unit }} {%- else -%} 100% {%- endif -%};
+    height: {%- if section.settings.custom_height %} {{ section.settings.height }}px {%- else -%}auto{%- endif -%};
+    min-height: {{ section.settings.min_height }}px;
+    flex-direction: {{ section.settings.direction }};
+    justify-content: {{ section.settings.justify }};
+    align-items: {{ section.settings.align }};
+    gap: {{ section.settings.row_gap }}px {{ section.settings.column_gap }}px;
+    flex-wrap: {{ section.settings.flex_wrap }};
+    align-self: {{ section.settings.align_self }};
+    box-sizing: border-box;
+  }
+  @media (max-width:{{settings.tablet_breakpoint}}px){
+    #shopify-section-{{ section.id }} .inner-container {
+      {%- if section.settings.tablet_container_layout != 'off' -%}
+        display: {{ section.settings.tablet_container_layout }};
+      {%- endif -%} 
+      {%- if section.settings.tablet_container_layout == 'grid' -%}
+        {%- if section.settings.tablet_grid_columns != 3 or section.settings.container_layout == 'flex' -%}
+          grid-template-columns: repeat({{ section.settings.tablet_grid_columns }}, 1fr);
+        {%- endif %}
+        {%- if section.settings.tablet_grid_rows != 1 or section.settings.container_layout == 'flex' -%}
+          grid-template-rows: repeat({{ section.settings.tablet_grid_rows }}, auto);
+        {%- endif %}
+      {%- endif %}
+      {%- if section.settings.tablet_content_width == 'boxed' -%}
+        {%- if section.settings.tablet_width != null -%}
+          max-width: {{ section.settings.tablet_width }}{%- if section.settings.tablet_width_unit != 'off' -%}{{ section.settings.tablet_width_unit }}{%- else -%}{{ section.settings.width_unit }}{%- endif -%};
+        {%- endif -%}
+      {%- elsif section.settings.tablet_content_width == 'full-width' -%}
+        max-width: 100%;
+      {%- endif -%}
+      {%- if section.settings.tablet_custom_height == true %} 
+        height: {{ section.settings.tablet_height }}px;
+      {%- endif -%}
+      {%- if section.settings.tablet_min_height != 0 -%}
+        min-height: {{ section.settings.tablet_min_height }}px;
+      {%- endif -%}
+      {%- if section.settings.tablet_container_layout == 'flex' -%}
+        {%- if section.settings.tablet_direction != 'off' -%}
+          flex-direction: {{ section.settings.tablet_direction }};
+        {%- endif -%}
+        {%- if section.settings.tablet_justify != 'off' -%}
+          justify-content: {{ section.settings.tablet_justify }};
+        {%- endif -%}
+        {%- if section.settings.tablet_align != 'off' -%}
+          align-items: {{ section.settings.tablet_align }};
+        {%- endif -%}
+      {%- endif -%}
+      {%- if section.settings.tablet_row_gap != 0 -%}
+        row-gap: {{ section.settings.tablet_row_gap }}px;
+      {%- endif -%}
+      {%- if section.settings.tablet_column_gap != 0 -%}
+        column-gap: {{ section.settings.tablet_column_gap }}px;
+      {%- endif -%}
+      {%- if section.settings.tablet_flex_wrap != 'off' -%}
+        flex-wrap: {{ section.settings.tablet_flex_wrap }};
+      {%- endif -%}
+      {%- if section.settings.tablet_align_self != 'auto' -%}
+        align-self: {{ section.settings.tablet_align_self }};
+      {%- endif -%}
+    }
+  }
+  @media (max-width:{{settings.mobile_breakpoint}}px){
+    #shopify-section-{{ section.id }} .inner-container {
+      {%- if section.settings.mobile_container_layout != 'off' -%}
+        display: {{ section.settings.mobile_container_layout }};
+      {%- endif -%} 
+      {%- if section.settings.mobile_container_layout == 'grid' -%}
+        {%- if section.settings.mobile_grid_columns != 3 or section.settings.container_layout == 'flex' -%}
+          grid-template-columns: repeat({{ section.settings.mobile_grid_columns }}, 1fr);
+        {%- endif %}
+        {%- if section.settings.mobile_grid_rows != 1 or section.settings.container_layout == 'flex' -%}
+          grid-template-rows: repeat({{ section.settings.mobile_grid_rows }}, auto);
+        {%- endif %}
+      {%- endif %}
+      {%- if section.settings.mobile_content_width == 'boxed' -%}
+        {%- if section.settings.mobile_width != null -%}
+          max-width: {{ section.settings.mobile_width }}{%- if section.settings.mobile_width_unit != 'off' -%}{{ section.settings.mobile_width_unit }}{%- else -%}{{ section.settings.width_unit }}{%- endif -%};
+        {%- endif -%}
+      {%- elsif section.settings.mobile_content_width == 'full-width' -%}
+        max-width: 100%;
+      {%- endif -%}
+      {%- if section.settings.mobile_custom_height == true %} 
+        height: {{ section.settings.mobile_height }}px;
+      {%- endif -%}
+      {%- if section.settings.mobile_min_height != 0 -%}
+        min-height: {{ section.settings.mobile_min_height }}px;
+      {%- endif -%}
+      {%- if section.settings.mobile_container_layout == 'flex' -%}
+        {%- if section.settings.mobile_direction != 'off' -%}
+          flex-direction: {{ section.settings.mobile_direction }};
+        {%- else -%}
+          flex-direction: column;  
+        {%- endif -%}
+        {%- if section.settings.mobile_justify != 'off' -%}
+          justify-content: {{ section.settings.mobile_justify }};
+        {%- endif -%}
+        {%- if section.settings.mobile_align != 'off' -%}
+          align-items: {{ section.settings.mobile_align }};
+        {%- endif -%}
+      {%- endif -%}
+      {%- if section.settings.mobile_row_gap != 0 -%}
+        row-gap: {{ section.settings.mobile_row_gap }}px;
+      {%- endif -%}
+      {%- if section.settings.mobile_column_gap != 0 -%}
+        column-gap: {{ section.settings.mobile_column_gap }}px;
+      {%- endif -%}
+      {%- if section.settings.mobile_flex_wrap != 'off' -%}
+        flex-wrap: {{ section.settings.mobile_flex_wrap }};
+      {%- endif -%}
+      {%- if section.settings.mobile_align_self != 'auto' -%}
+        align-self: {{ section.settings.mobile_align_self }};
+      {%- endif -%}
+    }
+  }
+</style>

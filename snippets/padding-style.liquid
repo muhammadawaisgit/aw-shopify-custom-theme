@@ -1,0 +1,44 @@
+{%- if heading_tag != blank -%}
+#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+{% else %}
+#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+{%- endif -%}
+    /* Padding */
+    {%- if item.settings.padding_type == 'custom' -%}
+        padding: {{ item.settings.padding_all }}px;
+    {%- elsif item.settings.padding_type == 'separate' -%}
+        padding: {{ item.settings.padding_top }}px {{ item.settings.padding_right }}px {{ item.settings.padding_bottom }}px {{ item.settings.padding_left }}px;
+    {%- else -%}
+        padding: {%- if heading_tag == blank -%}20px{% else %}0px{%- endif -%};
+    {%- endif -%}
+}
+
+@media (max-width:{{ settings.tablet_breakpoint }}px){
+    {%- if heading_tag != blank -%}
+    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    {% else %}
+    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+    {%- endif -%}
+        /* Padding */
+        {%- if item.settings.tablet_padding_type == 'custom' -%}
+            padding: {{ item.settings.tablet_padding_all }}px;
+        {%- elsif item.settings.tablet_padding_type == 'separate' -%}
+            padding: {{ item.settings.tablet_padding_top }}px {{ item.settings.tablet_padding_right }}px {{ item.settings.tablet_padding_bottom }}px {{ item.settings.tablet_padding_left }}px;
+        {%- endif -%}
+    }
+}
+
+@media (max-width:{{ settings.mobile_breakpoint }}px){
+    {%- if heading_tag != blank -%}
+    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    {% else %}
+    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+    {%- endif -%}
+        /* Padding */
+        {%- if item.settings.mobile_padding_type == 'custom' -%}
+            padding: {{ item.settings.mobile_padding_all }}px;
+        {%- elsif item.settings.mobile_padding_type == 'separate' -%}
+            padding: {{ item.settings.mobile_padding_top }}px {{ item.settings.mobile_padding_right }}px {{ item.settings.mobile_padding_bottom }}px {{ item.settings.mobile_padding_left }}px;
+        {%- endif -%}
+    }
+}

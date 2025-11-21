@@ -1,80 +1,99 @@
+{% stylesheet %}
+  .container-section {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+{% endstylesheet %}
 <style>
     #shopify-section-{{ section.id }} {
-        display: flex;
-        width: 100%;
-        box-sizing: border-box;
+      {% if section.settings.background_type == 'classic' %}
+          background: {{ section.settings.background_color }};
+          {% if section.settings.background_image_enabled %}
+              background-image: url({{ section.settings.background_image | image_url }});
+              background-position: {{ section.settings.background_position }};
+              background-attachment: {{ section.settings.background_attachment }};
+              background-repeat: {{ section.settings.background_repeat }};
+              background-size: {{ section.settings.background_size }};
+          {% endif %}
+          {% else %}
+          /* Gradient background can be added here */
+          background_image: linear-gradient({{ section.settings.gradient_angle }}deg, {{ section.settings.gradient_first_color }} {{ section.settings.first_gradient_location }}%, {{ section.settings.gradient_second_color }} {{ section.settings.second_gradient_location }}%);
+      {% endif %};
 
-        {% if section.settings.background_type == 'classic' %}
-            background: {{ section.settings.background_color }};
-            {% if section.settings.background_image_enabled %}
-                background-image: url({{ section.settings.background_image | image_url }});
-                background-position: {{ section.settings.background_position }};
-                background-attachment: {{ section.settings.background_attachment }};
-                background-repeat: {{ section.settings.background_repeat }};
-                background-size: {{ section.settings.background_size }};
-            {% endif %}
-            {% else %}
-            /* Gradient background can be added here */
-            background_image: linear-gradient({{ section.settings.gradient_angle }}deg, {{ section.settings.gradient_first_color }} {{ section.settings.first_gradient_location }}%, {{ section.settings.gradient_second_color }} {{ section.settings.second_gradient_location }}%);
-        {% endif %};
+      /* Margin */
+      {% if section.settings.margin_type == 'custom' %}
+          margin: {{ section.settings.margin_all }}px;
+      {% elsif section.settings.margin_type == 'separate' %}
+          margin: {{ section.settings.margin_top }}px {{ section.settings.margin_right }}px {{ section.settings.margin_bottom }}px {{ section.settings.margin_left }}px;
+      {% else %}
+          {% case section.settings.auto_margin_position %}
+              {% when 'top' %}
+                  margin: auto 0 0 0;
+              {% when 'bottom' %}
+                  margin: 0 0 auto 0;
+              {% when 'left' %}
+                  margin: 0 auto 0 0;
+              {% when 'right' %}
+                  margin: 0 0 0 auto;
+              {% when 'horizontal' %}
+                  margin: 0 auto;
+              {% when 'vertical' %}
+                  margin: auto 0;
+              {% else %}
+                  margin: auto;
+          {% endcase %}
+      {% endif %}
 
-        /* Margin */
-        {% if section.settings.margin_type == 'custom' %}
-            margin: {{ section.settings.margin_all }}px;
-        {% elsif section.settings.margin_type == 'separate' %}
-            margin: {{ section.settings.margin_top }}px {{ section.settings.margin_right }}px {{ section.settings.margin_bottom }}px {{ section.settings.margin_left }}px;
-        {% else %}
-            margin: 0 auto;
-        {% endif %}
+      border-style: {{ section.settings.border_type }};
+      border-color: {{ section.settings.border_color }};
 
-        border-style: {{ section.settings.border_type }};
-        border-color: {{ section.settings.border_color }};
+      /* Border Width */
+      {% if section.settings.custom_borders == true %}
+          border-width: {{ section.settings.border_top }}px {{ section.settings.border_right }}px {{ section.settings.border_bottom }}px {{ section.settings.border_left }}px;
+      {% else %}
+          border-width: {{ section.settings.border_all }}px;
+      {% endif %}
 
-        /* Border Width */
-        {% if section.settings.custom_borders == true %}
-            border-width: {{ section.settings.border_top }}px {{ section.settings.border_right }}px {{ section.settings.border_bottom }}px {{ section.settings.border_left }}px;
-        {% else %}
-            border-width: {{ section.settings.border_all }}px;
-        {% endif %}
+      /* Border Radius */
+      {% if section.settings.custom_border_radius == true %}
+          border-radius: {{ section.settings.radius_top }}px {{ section.settings.radius_right }}px {{ section.settings.radius_bottom }}px {{ section.settings.radius_left }}px;
+      {% else %}
+          border-radius: {{ section.settings.border_radius_all }}px;
+      {% endif %}
 
-        /* Border Radius */
-        {% if section.settings.custom_border_radius == true %}
-            border-radius: {{ section.settings.radius_top }}px {{ section.settings.radius_right }}px {{ section.settings.radius_bottom }}px {{ section.settings.radius_left }}px;
-        {% else %}
-            border-radius: {{ section.settings.border_radius_all }}px;
-        {% endif %}
-
-        box-shadow: {% if section.settings.box_shadow_enabled %} {{ section.settings.box_shadow_h_offset }}px {{ section.settings.box_shadow_v_offset }}px {{ section.settings.box_shadow_blur }}px {{ section.settings.box_shadow_spread }}px {{ section.settings.box_shadow_color }} {% if section.settings.box_shadow_position == 'inset' %} inset {% endif %} {% else %} none {% endif %};
+      box-shadow: {% if section.settings.box_shadow_enabled %} {{ section.settings.box_shadow_h_offset }}px {{ section.settings.box_shadow_v_offset }}px {{ section.settings.box_shadow_blur }}px {{ section.settings.box_shadow_spread }}px {{ section.settings.box_shadow_color }} {% if section.settings.box_shadow_position == 'inset' %} inset {% endif %} {% else %} none {% endif %};
     }
 
     #shopify-section-{{ section.id }} .inner-container {
-        display: {{ section.settings.container_layout }};
-        {% if section.settings.container_layout == 'grid' %}
-            grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
-            grid-template-rows: repeat({{ section.settings.grid_rows }}, auto);
-            grid-gap: {{ section.settings.grid_gap }};
-        {% endif %}
-        max-width: {% if section.settings.content_width == 'boxed' %} {{section.settings.max_width}}px {% else %}100%{% endif %};
-        width: {% if section.settings.content_width == 'boxed' %} {{section.settings.max_width}}{{ section.settings.width_unit }} {% else %} 100% {% endif %};
-        height: {% if section.settings.custom_height %} {{ section.settings.height }} {% else %}auto{% endif %};
-        min-height: {{ section.settings.min_height }}px;
-        flex-direction: {{ section.settings.direction }};
-        justify-content: {{ section.settings.justify }};
-        align-items: {{ section.settings.align }};
-        gap: {{ section.settings.row_gap }}px {{ section.settings.column_gap }}px;
-        flex-wrap: {{ section.settings.flex_wrap }};
+      display: {{ section.settings.container_layout }};
+      {% if section.settings.container_layout == 'grid' %}
+          grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
+          grid-template-rows: repeat({{ section.settings.grid_rows }}, auto);
+          grid-gap: {{ section.settings.grid_gap }};
+      {% endif %}
+      max-width: {% if section.settings.content_width == 'boxed' %} {{section.settings.max_width}}px {% else %}100%{% endif %};
+      width: {% if section.settings.content_width == 'boxed' %} {{section.settings.max_width}}{{ section.settings.width_unit }} {% else %} 100% {% endif %};
+      height: {% if section.settings.custom_height %} {{ section.settings.height }} {% else %}auto{% endif %};
+      min-height: {{ section.settings.min_height }}px;
+      flex-direction: {{ section.settings.direction }};
+      justify-content: {{ section.settings.justify }};
+      align-items: {{ section.settings.align }};
+      gap: {{ section.settings.row_gap }}px {{ section.settings.column_gap }}px;
+      flex-wrap: {{ section.settings.flex_wrap }};
 
-        /* Padding */
-        {% if section.settings.padding_type == 'custom' %}
-            padding: {{ section.settings.padding_all }}px;
-        {% elsif section.settings.padding_type == 'separate' %}
-            padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
-        {% else %}
-            padding: 20px;
-        {% endif %}
-        
-        align-self: {{ section.settings.align_self }};
-        box-sizing: border-box;
+      /* Padding */
+      {% if section.settings.padding_type == 'custom' %}
+          padding: {{ section.settings.padding_all }}px;
+      {% elsif section.settings.padding_type == 'separate' %}
+          padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+      {% else %}
+          padding: 20px;
+      {% endif %}
+      
+      align-self: {{ section.settings.align_self }};
+      box-sizing: border-box;
+      margin: 0 auto;
     }
 </style>
 
@@ -626,6 +645,21 @@
         ],
     },
     {
+      "type": "select",
+      "label": "Auto",
+      "id": "auto_margin_position",
+      "default": "horizontal",
+      "options": [
+        { "label": "All", "value": "all" },
+        { "label": "Top", "value": "top" },
+        { "label": "Bottom", "value": "bottom" },
+        { "label": "Left", "value": "left" },
+        { "label": "Right", "value": "right" },
+        { "label": "Horizontal", "value": "horizontal" },
+        { "label": "Vertical", "value": "vertical" }
+      ]
+    },
+    {
         "type": "range",
         "label": "Margin",
         "id": "margin_all",
@@ -751,11 +785,11 @@
   ],
 
   "blocks": [{ "type": "@theme" }],
-  "presets": [
+  /* "presets": [
     {
       "name": "Section",
       "category": "Layout"
     }
-  ]
+  ]*/
 }
 {% endschema %}

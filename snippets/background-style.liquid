@@ -1,0 +1,66 @@
+/* Background */
+{%- if heading_tag != blank -%}
+#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+{% else %}
+#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+{%- endif -%}
+    {%- if item.settings.background_type == 'classic' -%} 
+        {%- if item.settings.background_color != blank -%}
+            background: {{ item.settings.background_color }};
+        {%- endif -%}
+        {%- if item.settings.background_image_enabled and item.settings.background_image != null -%}
+            background-image: url({{ item.settings.background_image | image_url: width: 1440, height: 900 }});
+            background-position: {{ item.settings.background_position }};
+            background-attachment: {{ item.settings.background_attachment }};
+            background-repeat: {{ item.settings.background_repeat }};
+            background-size: {{ item.settings.background_size }};
+        {%- endif -%}
+        {%- else -%} 
+        /* Gradient background can be added here */
+        background-image: linear-gradient({{ item.settings.gradient_angle }}deg, {{ item.settings.gradient_first_color }} {{ item.settings.first_gradient_location }}%, {{ item.settings.gradient_second_color }} {{ item.settings.second_gradient_location }}%);
+    {%- endif -%}
+}
+
+@media (max-width:{{ settings.tablet_breakpoint }}px){
+    {%- if heading_tag != blank -%}
+    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    {% else %}
+    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    {%- endif -%}
+        {%- if item.settings.tablet_background_type == 'classic' -%} 
+            background: {{ item.settings.tablet_background_color }};
+            {%- if item.settings.tablet_background_image_enabled and item.settings.tablet_background_image != null -%}
+            background-image: url({{ item.settings.tablet_background_image | image_url: width: 1440, height: 900 }});
+            background-position: {{ item.settings.tablet_background_position }};
+            background-attachment: {{ item.settings.tablet_background_attachment }};
+            background-repeat: {{ item.settings.tablet_background_repeat }};
+            background-size: {{ item.settings.tablet_background_size }};
+            {%- endif -%}
+        {%- elsif item.settings.tablet_background_type == 'gradient' -%} 
+            /* Gradient background can be added here */
+            background-image: linear-gradient({{ item.settings.tablet_gradient_angle }}deg, {{ item.settings.tablet_gradient_first_color }} {{ item.settings.tablet_first_gradient_location }}%, {{ item.settings.tablet_gradient_second_color }} {{ item.settings.tablet_second_gradient_location }}%);
+        {%- endif -%}
+    }
+}
+
+@media (max-width:{{ settings.mobile_breakpoint }}px){
+    {%- if heading_tag != blank -%}
+    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    {% else %}
+    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    {%- endif -%}
+        {%- if item.settings.mobile_background_type == 'classic' -%} 
+            background: {{ item.settings.mobile_background_color }};
+            {%- if item.settings.mobile_background_image_enabled and item.settings.mobile_background_image != null -%}
+            background-image: url({{ item.settings.mobile_background_image | image_url: width: 1440, height: 900 }});
+            background-position: {{ item.settings.mobile_background_position }};
+            background-attachment: {{ item.settings.mobile_background_attachment }};
+            background-repeat: {{ item.settings.mobile_background_repeat }};
+            background-size: {{ item.settings.mobile_background_size }};
+            {%- endif -%}
+        {%- elsif item.settings.mobile_background_type == 'gradient' -%} 
+            /* Gradient background can be added here */
+            background-image: linear-gradient({{ item.settings.mobile_gradient_angle }}deg, {{ item.settings.mobile_gradient_first_color }} {{ item.settings.mobile_first_gradient_location }}%, {{ item.settings.mobile_gradient_second_color }} {{ item.settings.mobile_second_gradient_location }}%);
+        {%- endif -%}
+    }
+}

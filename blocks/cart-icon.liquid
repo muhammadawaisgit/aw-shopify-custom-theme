@@ -1,0 +1,100 @@
+<style>
+    header #shopify-block-{{ block.id }} svg {
+        {%- if block.settings.cart_custom_svg_enable == false -%}
+            {%- if block.settings.svg_custom_width_enable == true and block.settings.svg_custom_settings_enable == true -%}
+                width: {{ block.settings.svg_width }}px;
+                {%- else -%}
+                width: 24px;
+            {%- endif -%}
+            {%- unless block.settings.svg_fill_color == '#00000' -%}
+                {%- if block.settings.svg_custom_settings_enable == true -%}
+                    color: {{block.settings.svg_fill_color}};
+                {%- endif -%}
+            {%- endunless -%}
+        {%- else -%}
+            {%- if block.settings.svg_custom_settings_enable -%}
+                {%- if block.settings.svg_custom_width_enable == true -%}
+                    width: {{ block.settings.svg_width }}px;
+                    {%- else -%}
+                    width: 24px;
+                {%- endif -%}
+                fill: {{block.settings.svg_fill_color}};
+                stroke: {{ block.settings.svg_stroke_color }};
+            {%- endif -%}
+        {%- endif -%}
+    }
+</style>
+
+<a href="{{ routes.cart_url }}">
+    {% if block.settings.cart_custom_svg_enable == true %}
+        {{ block.settings.icon_svg_html }}
+    {% else %}
+        <span class="cart-svg">
+            {{ 'icon-cart.svg' | inline_asset_content }}
+        </span>
+    {% endif %}
+</a>
+
+{% schema %}
+    {
+        "name": "Cart Icon",
+        "class": "pb-cart-block",
+        "settings": [
+            {
+                "type": "checkbox",
+                "label": "Custom Svg",
+                "id": "cart_custom_svg_enable",
+            },
+            {
+                "type": "html",
+                "id": "icon_svg_html",
+                "label": "Svg / Font Icon",
+                "info": "Paste your SVG code or font icon HTML here.",
+                "visible_if": "{{ block.settings.cart_custom_svg_enable == true }}"
+            },
+            {
+                "type": "header",
+                "content": "Custom Setting"
+            },
+            {
+                "type": "checkbox",
+                "label": "Enable",
+                "id": "svg_custom_settings_enable",
+                "default": false
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Width",
+                "id": "svg_custom_width_enable",
+                "default": false,
+                "visible_if": "{{ block.settings.svg_custom_settings_enable == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Width (px)",
+                "id": "svg_width",
+                "visible_if": "{{ block.settings.svg_custom_settings_enable == true and block.settings.svg_custom_width_enable == true }}"
+            },
+            {
+                "type": "color",
+                "label": "Fill Color",
+                "id": "svg_fill_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.svg_custom_settings_enable == true }}"
+            },
+            {
+                "type": "color",
+                "label": "stroke Color",
+                "id": "svg_stroke_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.svg_custom_settings_enable == true and block.settings.svg_custom_settings_enable == true }}"
+            }
+        ],
+        "presets": [
+            {
+                "name": "t:general.cart",
+                "category": "t:general.header"
+            }
+        ]
+    }
+{% endschema %}

@@ -79,5 +79,22 @@
         "default": 4
       }
     ]
+  },
+  {
+    "name": "Breakpoints",
+    "settings": [
+      {
+        "type": "number",
+        "label": "Mobile (px)",
+        "id": "tablet_breakpoint",
+        "default": 1024,
+      },
+      {
+        "type": "number",
+        "label": "Mobile (px)",
+        "id": "mobile_breakpoint",
+        "default": 575,
+      }
+    ]
   }
 ]

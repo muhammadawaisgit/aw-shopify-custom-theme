@@ -1,0 +1,113 @@
+<style>
+    #shopify-block-{{ block.id }} svg, header #shopify-block-{{ block.id }} svg {
+        {% if block.settings.svg_custom_settings_enable %}
+            {% if block.settings.svg_custom_width_enable and block.settings.svg_width %}
+                width: {{ block.settings.svg_width }}px;
+            {% endif %}
+            {% if block.settings.svg_fill_color %}
+                fill: {{ block.settings.svg_fill_color }};
+            {% endif %}
+            {% if block.settings.svg_stroke_color %}
+                stroke: {{ block.settings.svg_stroke_color }};
+            {% endif %}
+        {% else %}
+            width:auto;
+        {% endif %}
+    }
+</style>
+
+{% if block.settings.icon_type == 'svg' %}
+    {% if block.settings.icon_svg_link_enable and block.settings.icon_svg_link %}
+        <a href="{{ block.settings.icon_svg_link }}">
+            {{ block.settings.icon_svg_html }}
+        </a>
+    {% else %}
+        {{ block.settings.icon_svg_html }}
+    {% endif %}
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Icon",
+        "class": "pb-icon-block",
+        "settings": [
+            {
+                "type": "select",
+                "label": "Type",
+                "id": "icon_type",
+                "options": [
+                    {
+                        "value": "svg",
+                        "label": "Svg / Font Icon"
+                    },
+                    {
+                        "value": "image",
+                        "label": "Image Icon"
+                    }
+                ],
+            },
+            {
+                "type": "html",
+                "id": "icon_svg_html",
+                "label": "Svg / Font Icon",
+                "info": "Paste your SVG code or font icon HTML here.",
+                "visible_if": "{{ block.settings.icon_type == 'svg' }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Link Enable",
+                "id": "icon_svg_link_enable",
+                "default": false,
+                "visible_if": "{{ block.settings.icon_type == 'svg' }}"
+
+            },
+            {
+                "type": "url",
+                "label": "svg / Font Icon Link",
+                "id": "icon_svg_link",
+                "visible_if": "{{ block.settings.icon_type == 'svg' and block.settings.icon_svg_link_enable == true }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Settings",
+                "id": "svg_custom_settings_enable",
+                "default": false,
+                "visible_if": "{{ block.settings.icon_type == 'svg' }}"
+            },
+            {
+                "type": "checkbox",
+                "label": "Custom Width",
+                "id": "svg_custom_width_enable",
+                "default": false,
+                "visible_if": "{{ block.settings.icon_type == 'svg' and block.settings.svg_custom_settings_enable == true }}"
+            },
+            {
+                "type": "number",
+                "label": "Width (px)",
+                "id": "svg_width",
+                "visible_if": "{{ block.settings.icon_type == 'svg' and block.settings.svg_custom_settings_enable == true and block.settings.svg_custom_width_enable == true }}"
+            },
+            {
+                "type": "color",
+                "label": "Fill Color",
+                "id": "svg_fill_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.icon_type == 'svg' and block.settings.svg_custom_settings_enable == true }}"
+            },
+            {
+                "type": "color",
+                "label": "stroke Color",
+                "id": "svg_stroke_color",
+                "default": "#000000",
+                "visible_if": "{{ block.settings.icon_type == 'svg' and block.settings.svg_custom_settings_enable == true }}"
+            }
+
+        ],
+        "presets": [
+            {
+                "name": "Icon",
+                "category": "Builder Elements"
+            }
+        ]
+    }
+{% endschema %}

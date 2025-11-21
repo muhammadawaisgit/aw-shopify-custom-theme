@@ -1,0 +1,120 @@
+#shopify-block-{{ block.id }} {
+    display: {{ block.settings.container_layout }};
+    {%- if block.settings.container_layout == 'grid' -%}
+        grid-template-columns: repeat({{ block.settings.grid_columns }}, 1fr);
+        grid-template-rows: repeat({{ block.settings.grid_rows }}, auto);
+    {%- endif %}
+    width: {%- if block.settings.content_width == 'boxed' -%} {%- if block.settings.width == null -%} auto {%- else -%} {{block.settings.width}}{{ block.settings.width_unit }} {%- endif %} {%- else -%} 100% {%- endif -%};
+    height: {%- if block.settings.custom_height %} {{ block.settings.height }}px {%- else -%}auto{%- endif -%};
+    min-height: {{ block.settings.min_height }}px;
+    flex-direction: {{ block.settings.direction }};
+    justify-content: {{ block.settings.justify }};
+    align-items: {{ block.settings.align }};
+    gap: {{ block.settings.row_gap }}px {{ block.settings.column_gap }}px;
+    flex-wrap: {{ block.settings.flex_wrap }};
+    align-self: {{ block.settings.align_self }};
+}
+
+@media (max-width:{{ settings.tablet_breakpoint }}px){
+    #shopify-block-{{ block.id }} {
+        {%- if block.settings.tablet_container_layout != 'off' -%}
+        display: {{ block.settings.tablet_container_layout }};
+        {%- endif -%} 
+        {%- if block.settings.tablet_container_layout == 'grid' -%}
+        {%- if block.settings.tablet_grid_columns != 3 or block.settings.container_layout == 'flex' -%}
+        grid-template-columns: repeat({{ block.settings.tablet_grid_columns }}, 1fr);
+        {%- endif %}
+        {%- if block.settings.tablet_grid_rows != 1 or block.settings.container_layout == 'flex' -%}
+        grid-template-rows: repeat({{ block.settings.tablet_grid_rows }}, auto);
+        {%- endif %}
+        {%- endif %}
+        {%- if block.settings.tablet_content_width == 'boxed' -%}
+        {%- if block.settings.tablet_width != null -%}
+        width: {{ block.settings.tablet_width }}{%- if block.settings.tablet_width_unit != 'off' -%}{{ block.settings.tablet_width_unit }}{%- else -%}{{ block.settings.width_unit }}{%- endif -%};
+        {%- endif -%}
+        {%- elsif block.settings.tablet_content_width == 'full-width' -%}
+        width: 100%;
+        {%- endif -%}
+        {%- if block.settings.tablet_custom_height == true %} 
+        height: {{ block.settings.tablet_height }}px;
+        {%- endif -%}
+        {%- if block.settings.tablet_min_height != 0 -%}
+        min-height: {{ block.settings.tablet_min_height }}px;
+        {%- endif -%}
+        {%- if block.settings.tablet_container_layout == 'flex' -%}
+        {%- if block.settings.tablet_direction != 'off' -%}
+        flex-direction: {{ block.settings.tablet_direction }};
+        {%- endif -%}
+        {%- if block.settings.tablet_justify != 'off' -%}
+        justify-content: {{ block.settings.tablet_justify }};
+        {%- endif -%}
+        {%- if block.settings.tablet_align != 'off' -%}
+        align-items: {{ block.settings.tablet_align }};
+        {%- endif -%}
+        {%- endif -%}
+        {%- if block.settings.tablet_row_gap != 0 -%}
+        row-gap: {{ block.settings.tablet_row_gap }}px;
+        {%- endif -%}
+        {%- if block.settings.tablet_column_gap != 0 -%}
+        column-gap: {{ block.settings.tablet_column_gap }}px;
+        {%- endif -%}
+        {%- if block.settings.tablet_flex_wrap != 'off' -%}
+        flex-wrap: {{ block.settings.tablet_flex_wrap }};
+        {%- endif -%}
+        {%- if block.settings.tablet_align_self != 'auto' -%}
+        align-self: {{ block.settings.tablet_align_self }};
+        {%- endif -%}
+    }
+}
+
+@media (max-width:{{ settings.mobile_breakpoint }}px){
+    #shopify-block-{{ block.id }} {
+        {%- if block.settings.mobile_container_layout != 'off' -%}
+        display: {{ block.settings.mobile_container_layout }};
+        {%- endif -%} 
+        {%- if block.settings.mobile_container_layout == 'grid' -%}
+        {%- if block.settings.mobile_grid_columns != 3 or block.settings.container_layout == 'flex' -%}
+        grid-template-columns: repeat({{ block.settings.mobile_grid_columns }}, 1fr);
+        {%- endif %}
+        {%- if block.settings.mobile_grid_rows != 1 or block.settings.container_layout == 'flex' -%}
+        grid-template-rows: repeat({{ block.settings.mobile_grid_rows }}, auto);
+        {%- endif %}
+        {%- endif %}
+        {%- if block.settings.mobile_content_width == 'boxed' -%}
+        {%- if block.settings.mobile_width != null -%}
+        width: {{ block.settings.mobile_width }}{%- if block.settings.mobile_width_unit != 'off' -%}{{ block.settings.mobile_width_unit }}{%- else -%}{{ block.settings.width_unit }}{%- endif -%};
+        {%- endif -%}
+        {%- elsif block.settings.mobile_content_width == 'full-width' -%}
+        width: 100%;
+        {%- endif -%}
+        {%- if block.settings.mobile_custom_height == true %} 
+        height: {{ block.settings.mobile_height }}px;
+        {%- endif -%}
+        {%- if block.settings.mobile_min_height != 0 -%}
+        min-height: {{ block.settings.mobile_min_height }}px;
+        {%- endif -%}
+        {%- if block.settings.mobile_container_layout == 'flex' -%}
+        {%- if block.settings.mobile_direction != 'off' -%}
+        flex-direction: {{ block.settings.mobile_direction }};
+        {%- endif -%}
+        {%- if block.settings.mobile_justify != 'off' -%}
+        justify-content: {{ block.settings.mobile_justify }};
+        {%- endif -%}
+        {%- if block.settings.mobile_align != 'off' -%}
+        align-items: {{ block.settings.mobile_align }};
+        {%- endif -%}
+        {%- endif -%}
+        {%- if block.settings.mobile_row_gap != 0 -%}
+        row-gap: {{ block.settings.mobile_row_gap }}px;
+        {%- endif -%}
+        {%- if block.settings.mobile_column_gap != 0 -%}
+        column-gap: {{ block.settings.mobile_column_gap }}px;
+        {%- endif -%}
+        {%- if block.settings.mobile_flex_wrap != 'off' -%}
+        flex-wrap: {{ block.settings.mobile_flex_wrap }};
+        {%- endif -%}
+        {%- if block.settings.mobile_align_self != 'auto' -%}
+        align-self: {{ block.settings.mobile_align_self }};
+        {%- endif -%}
+    }
+}
