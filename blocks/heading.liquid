@@ -7,13 +7,13 @@
 {% assign heading_tag = block.settings.html_tag | default: 'h2' %}
 
 {%- capture heading_style -%}
-    {% render 'heading-style', heading_tag: heading_tag %}
+    {% render 'heading-style', selector: heading_tag %}
     <style>
-        {% render 'typography-style', item: block, heading_tag: heading_tag %}
-        {% render 'background-style', item: block, heading_tag: heading_tag %}
-        {% render 'border-style', item: block, heading_tag: heading_tag %}
-        {% render 'margin-style', item: block, heading_tag: heading_tag %}
-        {% render 'padding-style', item: block, heading_tag: heading_tag %}
+        {% render 'typography-style', item: block, selector: heading_tag %}
+        {% render 'background-style', item: block, selector: heading_tag %}
+        {% render 'border-style', item: block, selector: heading_tag %}
+        {% render 'margin-style', item: block, selector: heading_tag %}
+        {% render 'padding-style', item: block, selector: heading_tag, padding: 0 %}
     </style>
 {%- endcapture -%}
 

@@ -5,11 +5,7 @@
 {% endif %}
 
 {% comment %} <style>   {% endcomment %}
-{%- if heading_tag != blank -%}
-#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-{% else %}
-#shopify-{{ shopify_element }}-{{ item.id }} {
-{%- endif -%}
+#shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
     /* Margin */
     {%- if item.settings.margin_type == 'custom' -%}
         margin: {{ item.settings.margin_all }}px;
@@ -36,11 +32,7 @@
 }
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
-    {%- if heading_tag != blank -%}
-    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-    {% else %}
-    #shopify-{{ shopify_element }}-{{ item.id }} {
-    {%- endif -%}
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
         /* Margin */
         {%- if item.settings.tablet_margin_type == 'custom' -%}
             margin: {{ item.settings.tablet_margin_all }}px;
@@ -68,11 +60,7 @@
 }
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
-    {%- if heading_tag != blank -%}
-    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-    {% else %}
-    #shopify-{{ shopify_element }}-{{ item.id }} {
-    {%- endif -%}
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
         /* Margin */
         {%- if item.settings.mobile_margin_type == 'custom' -%}
             margin: {{ item.settings.mobile_margin_all }}px;

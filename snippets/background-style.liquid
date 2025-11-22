@@ -6,11 +6,7 @@
 
 {% comment %} <style>   {% endcomment %}
 /* Background */
-{%- if heading_tag != blank -%}
-#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-{% else %}
-#shopify-{{ shopify_element }}-{{ item.id }} {
-{%- endif -%}
+#shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
     {%- if item.settings.background_type == 'classic' -%} 
         {%- if item.settings.background_color != blank -%}
             background: {{ item.settings.background_color }};
@@ -29,11 +25,7 @@
 }
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
-    {%- if heading_tag != blank -%}
-    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-    {% else %}
-    #shopify-{{ shopify_element }}-{{ item.id }} {
-    {%- endif -%}
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
         {%- if item.settings.tablet_background_type == 'classic' -%} 
             background: {{ item.settings.tablet_background_color }};
             {%- if item.settings.tablet_background_image_enabled and item.settings.tablet_background_image != null -%}
@@ -51,11 +43,7 @@
 }
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
-    {%- if heading_tag != blank -%}
-    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
-    {% else %}
-    #shopify-{{ shopify_element }}-{{ item.id }} {
-    {%- endif -%}
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
         {%- if item.settings.mobile_background_type == 'classic' -%} 
             background: {{ item.settings.mobile_background_color }};
             {%- if item.settings.mobile_background_image_enabled and item.settings.mobile_background_image != null -%}
