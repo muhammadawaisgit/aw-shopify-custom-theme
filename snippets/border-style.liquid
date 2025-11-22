@@ -1,7 +1,14 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
+{% comment %} <style>   {% endcomment %}
 {%- if heading_tag != blank -%}
-#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
 {% else %}
-#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+#shopify-{{ shopify_element }}-{{ item.id }} {
 {%- endif -%}
     border-style: {{ item.settings.border_type }};
     border-color: {{ item.settings.border_color }};
@@ -22,9 +29,9 @@
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         {%- if item.settings.tablet_border_type != 'off' -%}
             border-style: {{ item.settings.tablet_border_type }};
@@ -52,9 +59,9 @@
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         {%- if item.settings.mobile_border_type != 'off' -%}
             border-style: {{ item.settings.mobile_border_type }};

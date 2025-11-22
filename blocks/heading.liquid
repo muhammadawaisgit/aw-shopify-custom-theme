@@ -1,7 +1,13 @@
+{% stylesheet %}
+    .pb-heading-block a {
+        all: unset;
+    }
+{% endstylesheet %}
+
 {% assign heading_tag = block.settings.html_tag | default: 'h2' %}
 
 {%- capture heading_style -%}
-    {% render 'heading-style' %}
+    {% render 'heading-style', heading_tag: heading_tag %}
     <style>
         {% render 'typography-style', item: block, heading_tag: heading_tag %}
         {% render 'background-style', item: block, heading_tag: heading_tag %}

@@ -1,7 +1,13 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
 {%- if heading_tag != blank -%}
-#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
 {% else %}
-#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+#shopify-{{ shopify_element }}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
 {%- endif -%}
     /* Padding */
     {%- if item.settings.padding_type == 'custom' -%}
@@ -15,9 +21,9 @@
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
     {%- endif -%}
         /* Padding */
         {%- if item.settings.tablet_padding_type == 'custom' -%}
@@ -30,9 +36,9 @@
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {%- if item == section -%} .inner-container {%- endif -%} {
     {%- endif -%}
         /* Padding */
         {%- if item.settings.mobile_padding_type == 'custom' -%}

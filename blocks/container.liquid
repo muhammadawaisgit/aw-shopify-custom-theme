@@ -4,7 +4,7 @@
   }
 {% endstylesheet %}
 
-{% capture container-style %}
+{% capture container_style %}
 <style>
   {%- render 'container_style' %}
   {%- render 'background-style', item: block %}
@@ -15,7 +15,7 @@
 {% endcapture %}
 
 {% comment %} {%- assign before =  container-style.size -%} {% endcomment %}
-{%- assign content =  container-style | strip_newlines | split: " " | join: " " | split: "*/" -%}
+{%- assign content =  container_style | strip_newlines | split: " " | join: " " | split: "*/" -%}
 {%- assign new_style = "" -%}
 {%- for word in content -%}
 	{%- assign new_word = word | split: "/*" | first | strip | replace: "; ", ";" | replace: "} ", "}" | replace: "{ ", "{" | replace: " {", "{" -%}

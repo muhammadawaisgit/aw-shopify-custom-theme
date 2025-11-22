@@ -1,7 +1,14 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
+{% comment %} <style>   {% endcomment %}
 {%- if heading_tag != blank -%}
-#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
 {% else %}
-#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+#shopify-{{ shopify_element }}-{{ item.id }} {
 {%- endif -%}
     /* Margin */
     {%- if item.settings.margin_type == 'custom' -%}
@@ -30,9 +37,9 @@
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         /* Margin */
         {%- if item.settings.tablet_margin_type == 'custom' -%}
@@ -62,9 +69,9 @@
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         /* Margin */
         {%- if item.settings.mobile_margin_type == 'custom' -%}

@@ -1,8 +1,15 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
+{% comment %} <style>   {% endcomment %}
 /* Background */
 {%- if heading_tag != blank -%}
-#shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+#shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
 {% else %}
-#shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+#shopify-{{ shopify_element }}-{{ item.id }} {
 {%- endif -%}
     {%- if item.settings.background_type == 'classic' -%} 
         {%- if item.settings.background_color != blank -%}
@@ -23,9 +30,9 @@
 
 @media (max-width:{{ settings.tablet_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         {%- if item.settings.tablet_background_type == 'classic' -%} 
             background: {{ item.settings.tablet_background_color }};
@@ -45,9 +52,9 @@
 
 @media (max-width:{{ settings.mobile_breakpoint }}px){
     {%- if heading_tag != blank -%}
-    #shopify-block-{{ block.id }} {{ heading_tag }}, #shopify-block-{{ block.id }} a {
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ heading_tag }} {
     {% else %}
-    #shopify-{%- if item == block -%} block {%- else -%} section {%- endif -%}-{{ item.id }} {
+    #shopify-{{ shopify_element }}-{{ item.id }} {
     {%- endif -%}
         {%- if item.settings.mobile_background_type == 'classic' -%} 
             background: {{ item.settings.mobile_background_color }};
