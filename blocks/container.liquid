@@ -76,7 +76,8 @@
       "options": [
         { "label": "px", "value": "px" },
         { "label": "%", "value": "%" },
-        { "label": "vw", "value": "vw" }
+        { "label": "vw", "value": "vw" },
+        { "label": "mc", "value": "max-content" }
       ],
       "default": "px",
       "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.breakpoint-selector == 'desktop' }}"
@@ -86,7 +87,7 @@
       "label": "Width",
       "id": "width",
       "placeholder": "1140",
-      "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'desktop' }}"
     },
     {
       "type": "checkbox",
@@ -784,7 +785,8 @@
         { "label": "Off", "value": "off" },
         { "label": "px", "value": "px" },
         { "label": "%", "value": "%" },
-        { "label": "vw", "value": "vw" }
+        { "label": "vw", "value": "vw" },
+        { "label": "mc", "value": "max-content" }
       ],
       "visible_if": "{{ block.settings.tablet_content_width == 'boxed' and block.settings.breakpoint-selector == 'tablet' }}"
     },
@@ -793,7 +795,7 @@
       "label": "Width",
       "id": "tablet_width",
       "placeholder": "1140",
-      "visible_if": "{{ block.settings.tablet_content_width == 'boxed' and block.settings.breakpoint-selector == 'tablet' }}"
+      "visible_if": "{{ block.settings.tablet_content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "checkbox",
@@ -1494,7 +1496,8 @@
         { "label": "Off", "value": "off" },
         { "label": "px", "value": "px" },
         { "label": "%", "value": "%" },
-        { "label": "vw", "value": "vw" }
+        { "label": "vw", "value": "vw" },
+        { "label": "mc", "value": "max-content" }
       ],
       "visible_if": "{{ block.settings.mobile_content_width == 'boxed' and block.settings.breakpoint-selector == 'mobile' }}"
     },
@@ -1503,7 +1506,7 @@
       "label": "Width",
       "id": "mobile_width",
       "placeholder": "1140",
-      "visible_if": "{{ block.settings.mobile_content_width == 'boxed' and block.settings.breakpoint-selector == 'mobile' }}"
+      "visible_if": "{{ block.settings.mobile_content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "checkbox",
