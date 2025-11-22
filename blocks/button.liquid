@@ -9,13 +9,26 @@
     }
 {% endstylesheet %}
 
-{% render 'button-style', item: block %}
-<style>
-    {% render 'typography-style', item: block, selector: 'a' %}
-    {% render 'border-style', item: block, selector: 'a' %}
-    {% render 'margin-style', item: block, selector: 'a' %}
-    {% render 'padding-style', item: block, selector: 'a' %}
-</style>
+{%- capture button_style -%}
+    {% render 'button-style', item: block %}
+    <style>
+        {% render 'typography-style', item: block, selector: 'a' %}
+        {% render 'border-style', item: block, selector: 'a' %}
+        {% render 'margin-style', item: block, selector: 'a' %}
+        {% render 'padding-style', item: block, selector: 'a' %}
+    </style>
+{%- endcapture -%}
+
+{% comment %} {%- assign before =  container-style.size -%} {% endcomment %}
+{%- assign content =  button_style | strip_newlines | split: " " | join: " " | split: "*/" -%}
+{%- assign new_style = "" -%}
+{%- for word in content -%}
+	{%- assign new_word = word | split: "/*" | first | strip | replace: "; ", ";" | replace: "} ", "}" | replace: "{ ", "{" | replace: " {", "{" -%}
+  {%- assign new_style = new_style | append: new_word -%}
+{%- endfor -%}
+
+{% comment %}  CSS minifed: {{ before }} --> {{ new_style.size }}  {% endcomment %}
+{{- new_style  }}
 
 <a
     {%- if block.settings.enable_link %}
