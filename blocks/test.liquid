@@ -48,8 +48,215 @@
       ]
     },
     {
+      "type": "header",
+      "content": "Background",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
       "type": "select",
-      "label": "Test Layout",
+      "label": "Background Type",
+      "id": "background_type",
+      "options": [
+        {
+          "label": "Classic",
+          "value": "classic"
+        },
+        {
+          "label": "Gradient",
+          "value": "gradient"
+        }
+      ],
+      "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "background_color",
+      "default": "transparent",
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "checkbox",
+      "label": "Background Image",
+      "id": "background_image_enabled",
+      "default": false,
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "background_image",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Position",
+      "id": "background_position",
+      "options": [
+        {
+          "label": "Center Center",
+          "value": "center center"
+        },
+        {
+          "label": "Center Left",
+          "value": "center left"
+        },
+        {
+          "label": "Center Right",
+          "value": "center right"
+        },
+        {
+          "label": "Top Center",
+          "value": "top center"
+        },
+        {
+          "label": "Top Left",
+          "value": "top left"
+        },
+        {
+          "label": "Top Right",
+          "value": "top right"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom center"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom left"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom right"
+        }
+      ],
+      "default": "center center",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Attachement",
+      "id": "background_attachment",
+      "options": [
+        {
+          "label": "Scroll",
+          "value": "scroll"
+        },
+        {
+          "label": "Fixed",
+          "value": "fixed"
+        }
+      ],
+      "default": "scroll",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Repeat",
+      "id": "background_repeat",
+      "options": [
+        {
+          "label": "No Repeat",
+          "value": "no-repeat"
+        },
+        {
+          "label": "Repeat",
+          "value": "repeat"
+        },
+        {
+          "label": "Repeat X",
+          "value": "repeat-x"
+        },
+        {
+          "label": "Repeat Y",
+          "value": "repeat-y"
+        }
+      ],
+      "default": "no-repeat",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Display Size",
+      "id": "background_size",
+      "options": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "Cover",
+          "value": "cover"
+        },
+        {
+          "label": "Contain",
+          "value": "contain"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "First Color",
+      "id": "gradient_first_color",
+      "default": "#000000",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "first_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "Second Color",
+      "id": "gradient_second_color",
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "second_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Gradient Type",
+      "id": "gradient_type",
+      "options": [
+        {
+          "label": "Linear",
+          "value": "linear"
+        },
+        {
+          "label": "Radial",
+          "value": "radial"
+        }
+      ],
+      "default": "linear",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "number",
+      "label": "Angle (degrees)",
+      "id": "gradient_angle",
+      "default": 90,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Test 1 Layout",
       "id": "container_layout",
       "options": [
         {
@@ -82,8 +289,219 @@
       ]
     },
     {
+      "type": "header",
+      "content": "Background",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
+    },
+    {
       "type": "select",
-      "label": "Test Layout",
+      "label": "Background Type",
+      "id": "tablet_background_type",
+      "options": [
+        {
+          "label": "Off",
+          "value": "off"
+        },
+        {
+          "label": "Classic",
+          "value": "classic"
+        },
+        {
+          "label": "Gradient",
+          "value": "gradient"
+        }
+      ],
+      "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "tablet_background_color",
+      "default": "transparent",
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "checkbox",
+      "label": "Background Image",
+      "id": "tablet_background_image_enabled",
+      "default": false,
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "tablet_background_image",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Position",
+      "id": "tablet_background_position",
+      "options": [
+        {
+          "label": "Center Center",
+          "value": "center center"
+        },
+        {
+          "label": "Center Left",
+          "value": "center left"
+        },
+        {
+          "label": "Center Right",
+          "value": "center right"
+        },
+        {
+          "label": "Top Center",
+          "value": "top center"
+        },
+        {
+          "label": "Top Left",
+          "value": "top left"
+        },
+        {
+          "label": "Top Right",
+          "value": "top right"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom center"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom left"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom right"
+        }
+      ],
+      "default": "center center",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Attachement",
+      "id": "tablet_background_attachment",
+      "options": [
+        {
+          "label": "Scroll",
+          "value": "scroll"
+        },
+        {
+          "label": "Fixed",
+          "value": "fixed"
+        }
+      ],
+      "default": "scroll",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Repeat",
+      "id": "tablet_background_repeat",
+      "options": [
+        {
+          "label": "No Repeat",
+          "value": "no-repeat"
+        },
+        {
+          "label": "Repeat",
+          "value": "repeat"
+        },
+        {
+          "label": "Repeat X",
+          "value": "repeat-x"
+        },
+        {
+          "label": "Repeat Y",
+          "value": "repeat-y"
+        }
+      ],
+      "default": "no-repeat",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Display Size",
+      "id": "tablet_background_size",
+      "options": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "Cover",
+          "value": "cover"
+        },
+        {
+          "label": "Contain",
+          "value": "contain"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "First Color",
+      "id": "tablet_gradient_first_color",
+      "default": "#000000",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "tablet_first_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "Second Color",
+      "id": "tablet_gradient_second_color",
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "tablet_second_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Gradient Type",
+      "id": "tablet_gradient_type",
+      "options": [
+        {
+          "label": "Linear",
+          "value": "linear"
+        },
+        {
+          "label": "Radial",
+          "value": "radial"
+        }
+      ],
+      "default": "linear",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "number",
+      "label": "Angle (degrees)",
+      "id": "tablet_gradient_angle",
+      "default": 90,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Test 1 Layout",
       "id": "tablet_container_layout",
       "options": [
         {
@@ -116,8 +534,219 @@
       ]
     },
     {
+      "type": "header",
+      "content": "Background",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
+    },
+    {
       "type": "select",
-      "label": "Test Layout",
+      "label": "Background Type",
+      "id": "mobile_background_type",
+      "options": [
+        {
+          "label": "Off",
+          "value": "off"
+        },
+        {
+          "label": "Classic",
+          "value": "classic"
+        },
+        {
+          "label": "Gradient",
+          "value": "gradient"
+        }
+      ],
+      "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "mobile_background_color",
+      "default": "transparent",
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "checkbox",
+      "label": "Background Image",
+      "id": "mobile_background_image_enabled",
+      "default": false,
+      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "mobile_background_image",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Position",
+      "id": "mobile_background_position",
+      "options": [
+        {
+          "label": "Center Center",
+          "value": "center center"
+        },
+        {
+          "label": "Center Left",
+          "value": "center left"
+        },
+        {
+          "label": "Center Right",
+          "value": "center right"
+        },
+        {
+          "label": "Top Center",
+          "value": "top center"
+        },
+        {
+          "label": "Top Left",
+          "value": "top left"
+        },
+        {
+          "label": "Top Right",
+          "value": "top right"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom center"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom left"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom right"
+        }
+      ],
+      "default": "center center",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Attachement",
+      "id": "mobile_background_attachment",
+      "options": [
+        {
+          "label": "Scroll",
+          "value": "scroll"
+        },
+        {
+          "label": "Fixed",
+          "value": "fixed"
+        }
+      ],
+      "default": "scroll",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Repeat",
+      "id": "mobile_background_repeat",
+      "options": [
+        {
+          "label": "No Repeat",
+          "value": "no-repeat"
+        },
+        {
+          "label": "Repeat",
+          "value": "repeat"
+        },
+        {
+          "label": "Repeat X",
+          "value": "repeat-x"
+        },
+        {
+          "label": "Repeat Y",
+          "value": "repeat-y"
+        }
+      ],
+      "default": "no-repeat",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Display Size",
+      "id": "mobile_background_size",
+      "options": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "Cover",
+          "value": "cover"
+        },
+        {
+          "label": "Contain",
+          "value": "contain"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "First Color",
+      "id": "mobile_gradient_first_color",
+      "default": "#000000",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "mobile_first_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "color",
+      "label": "Second Color",
+      "id": "mobile_gradient_second_color",
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "range",
+      "label": "Location",
+      "id": "mobile_second_gradient_location",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Gradient Type",
+      "id": "mobile_gradient_type",
+      "options": [
+        {
+          "label": "Linear",
+          "value": "linear"
+        },
+        {
+          "label": "Radial",
+          "value": "radial"
+        }
+      ],
+      "default": "linear",
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "number",
+      "label": "Angle (degrees)",
+      "id": "mobile_gradient_angle",
+      "default": 90,
+      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "select",
+      "label": "Test 1 Layout",
       "id": "mobile_container_layout",
       "options": [
         {

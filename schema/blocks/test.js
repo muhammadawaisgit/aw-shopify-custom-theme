@@ -1,10 +1,10 @@
 // schemas/blocks/test.js
 
 import { defineSectionSchema } from 'shopify-schema-utils';
+import { breakpoints, breakpointLabels } from './breakpoints';
+import backgroundSchema from './background-schema';
 
 const name = 'Test-block';
-
-let breakpoints = ['','tablet_', 'mobile_'];
 
 export default defineSectionSchema({
     name,
@@ -36,15 +36,16 @@ export default defineSectionSchema({
                         { label: "Grid", value: "grid" }
                     ]
                 },
+                ...backgroundSchema(prefix, breakpointLabels),
                 {
                     type: "select",
-                    label: "Test Layout",
+                    label: "Test 1 Layout",
                     id: `${prefix}container_layout`,
                     options: [
                         { label: "Flexbox", value: "flex" },
                         { label: "Grid", value: "grid" }
                     ]
-                }
+                },
             ]
         )),
     ],
