@@ -39,7 +39,7 @@ export default defineSectionSchema({
                     { "label": "Flexbox", "value": "flex" },
                     { "label": "Grid", "value": "grid" }
                 ],
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "select",
@@ -50,7 +50,7 @@ export default defineSectionSchema({
                 { "label": "Boxed", "value": "boxed" },
                 { "label": "Full Width", "value": "full-width" }
                 ],
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "select",
@@ -64,42 +64,42 @@ export default defineSectionSchema({
                 { "label": "mc", "value": "max-content" }
                 ],
                 "default": "px",
-                "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.content_width == 'boxed' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "number",
                 "label": "Width",
                 "id": `${prefix}width`,
                 "placeholder": "1140",
-                "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.content_width == 'boxed' and section.settings.width_unit != 'max-content' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "checkbox",
                 "label": "Custom Height",
                 "id": `${prefix}custom_height`,
                 "default": false,
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "text",
                 "label": "height (px)",
                 "id": `${prefix}height`,
                 "default": "auto",
-                "visible_if": "{{ block.settings.custom_height == true and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.custom_height == true and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "number",
                 "label": "Min Height (px)",
                 "id": `${prefix}min_height`,
                 "default": 0,
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
 
             // Flexbox Items Settings
             {
                 "type": "header",
                 "content": "Items",
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "select",
@@ -113,7 +113,7 @@ export default defineSectionSchema({
                 { "label": "Column Reverse", "value": "column-reverse" }
                 ],
                 "default": "row",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'flex' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "select",
@@ -129,7 +129,7 @@ export default defineSectionSchema({
                 { "label": "Space Evenly", "value": "space-evenly" }
                 ],
                 "default": "flex-start",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'flex' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "select",
@@ -143,7 +143,7 @@ export default defineSectionSchema({
                 { "label": "Stretch", "value": "stretch" }
                 ],
                 "default": "flex-start",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'flex' and section.settings.breakpoint-selector == 'desktop' }}"
             },
 
             // Grid Items Settings
@@ -155,7 +155,7 @@ export default defineSectionSchema({
                 "max": 12,
                 "step": 1,
                 "default": 3,
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'grid' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "range",
@@ -165,21 +165,21 @@ export default defineSectionSchema({
                 "max": 12,
                 "step": 1,
                 "default": 1,
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'grid' and section.settings.breakpoint-selector == 'desktop' }}"
             },
             {
                 "type": "text",
                 "label": "Grid Gap (px)",
                 "id": `${prefix}grid_gap`,
                 "default": "0px",
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": "{{ section.settings.container_layout == 'grid' and section.settings.breakpoint-selector == 'desktop' }}"
             },
 
             // Gap Settings
             {
                 "type": "header",
                 "content": "Gap",
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "range",
@@ -189,7 +189,7 @@ export default defineSectionSchema({
                 "max": 100,
                 "step": 1,
                 "default": 0,
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "range",
@@ -199,14 +199,14 @@ export default defineSectionSchema({
                 "max": 100,
                 "step": 1,
                 "default": 0,
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
 
             // Wrap Settings
             {
                 "type": "header",
                 "content": "Wrap",
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
             {
                 "type": "select",
@@ -219,18 +219,18 @@ export default defineSectionSchema({
                 { "label": "Wrap Reverse", "value": "wrap-reverse" }
                 ],
                 "default": "nowrap",
-                "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ section.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
 
-            ...backgroundSchema('block' ,prefix, breakpointLabels),
+            ...backgroundSchema('section', prefix, breakpointLabels),
             
-            ...borderSchema('block' ,prefix, breakpointLabels),
+            ...borderSchema('section', prefix, breakpointLabels),
             
-            ...marginSchema('block' ,prefix, breakpointLabels),
+            ...marginSchema('section', prefix, breakpointLabels),
             
-            ...paddingSchema('block' ,prefix, breakpointLabels),
+            ...paddingSchema('section', prefix, breakpointLabels),
             
-            ...alignSelfSchema('block' ,prefix, breakpointLabels),
+            ...alignSelfSchema('section', prefix, breakpointLabels),
             
         ])),
     ],

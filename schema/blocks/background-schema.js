@@ -1,10 +1,10 @@
-function backgroundSchema(prefix, breakpointLabels){
+function backgroundSchema(item, prefix, breakpointLabels){
     return [
         // Background Settings
         {
             "type": "header",
             "content": "Background",
-            "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "select",
@@ -15,7 +15,7 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Classic", "value": "classic" },
             { "label": "Gradient", "value": "gradient" }
             ],
-            "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
 
         // Classic Background Settings
@@ -24,20 +24,20 @@ function backgroundSchema(prefix, breakpointLabels){
             "label": "Background Color",
             "id": `${prefix}background_color`,
             "default": "transparent",
-            "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'classic' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "checkbox",
             "label": "Background Image",
             "id": `${prefix}background_image_enabled`,
             "default": false,
-            "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'classic' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "image_picker",
             "label": "Background Image",
             "id": `${prefix}background_image`,
-            "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_image_enabled == true and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "select",
@@ -55,7 +55,7 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Bottom Right", "value": "bottom right" }
             ],
             "default": "center center",
-            "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_image_enabled == true and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "select",
@@ -66,7 +66,7 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Fixed", "value": "fixed" }
             ],
             "default": "scroll",
-            "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_image_enabled == true and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "select",
@@ -79,7 +79,7 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Repeat Y", "value": "repeat-y" }
             ],
             "default": "no-repeat",
-            "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_image_enabled == true and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "select",
@@ -91,7 +91,7 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Contain", "value": "contain" }
             ],
             "default": "cover",
-            "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_image_enabled == true and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
 
         // Gradient Background Settings
@@ -100,7 +100,7 @@ function backgroundSchema(prefix, breakpointLabels){
             "label": "First Color",
             "id": `${prefix}gradient_first_color`,
             "default": "#000000",
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -110,14 +110,14 @@ function backgroundSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "%",
             "default": 0,
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "color",
             "label": "Second Color",
             "id": `${prefix}gradient_second_color`,
             "default": "#ffffff",
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -127,7 +127,7 @@ function backgroundSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "%",
             "default": 100,
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "select",
@@ -138,14 +138,14 @@ function backgroundSchema(prefix, breakpointLabels){
             { "label": "Radial", "value": "radial" }
             ],
             "default": "linear",
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "number",
             "label": "Angle (degrees)",
             "id": `${prefix}gradient_angle`,
             "default": 90,
-            "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.background_type == 'gradient' and ${item}.settings.gradient_type == 'linear' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
     ]
 }

@@ -1,4 +1,4 @@
-function alignSelfSchema(prefix, breakpointLabels){
+function alignSelfSchema(item, prefix, breakpointLabels){
     return [
         {
             "type": "select",
@@ -12,7 +12,7 @@ function alignSelfSchema(prefix, breakpointLabels){
             { "label": "Stretch", "value": "stretch" },
             { "label": "Baseline", "value": "baseline" }
             ],
-            "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         }
     ]
 }

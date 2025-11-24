@@ -1,10 +1,10 @@
-function marginSchema(prefix, breakpointLabels){
+function marginSchema(item, prefix, breakpointLabels){
     return [
         // Margin Settings
         {
             "type": "header",
             "content": "Layout",
-            "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "select",
@@ -16,7 +16,7 @@ function marginSchema(prefix, breakpointLabels){
             { "label": "Custom", "value": "custom" },
             { "label": "Separate", "value": "separate" }
             ],
-            "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "select",
@@ -31,7 +31,7 @@ function marginSchema(prefix, breakpointLabels){
             { "label": "Horzontal", "value": "horzontal" },
             { "label": "Vertical", "value": "vertical" }
             ],
-            "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' and block.settings.margin_type == 'auto' }}"
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == 'desktop' and ${item}.settings.margin_type == 'auto' }}`
         },
         {
             "type": "range",
@@ -41,7 +41,7 @@ function marginSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": "{{ block.settings.margin_type == 'custom' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.margin_type == 'custom' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -51,7 +51,7 @@ function marginSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.margin_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -61,7 +61,7 @@ function marginSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.margin_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -71,7 +71,7 @@ function marginSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.margin_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
         {
             "type": "range",
@@ -81,7 +81,7 @@ function marginSchema(prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+            "visible_if": `{{ ${item}.settings.margin_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
         },
     ]
 }
