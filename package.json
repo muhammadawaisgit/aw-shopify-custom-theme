@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "esbuild-plugin-liquid-schemas": "^0.0.2",
+    "shopify-schema-utils": "^0.0.2"
+  },
+  "scripts": {
+    "build": "node ./scripts/build-schemas.js",
+    "dev": "node ./scripts/build-schemas.js --watch",
+    "type": "module"
+  }
+}

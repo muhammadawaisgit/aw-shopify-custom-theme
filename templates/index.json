@@ -16,7 +16,7 @@
           "type": "container",
           "name": "Container",
           "settings": {
-            "breakpoint-selector": "desktop",
+            "breakpoint-selector": "mobile",
             "container_layout": "flex",
             "content_width": "boxed",
             "width_unit": "%",
@@ -200,7 +200,7 @@
             "mobile_margin_right": 0,
             "mobile_margin_bottom": 0,
             "mobile_margin_left": 0,
-            "mobile_padding_type": "auto",
+            "mobile_padding_type": "custom",
             "mobile_padding_all": 0,
             "mobile_padding_top": 20,
             "mobile_padding_right": 20,
@@ -2922,7 +2922,7 @@
       ],
       "name": "Section",
       "settings": {
-        "breakpoint-selector": "tablet",
+        "breakpoint-selector": "mobile",
         "container_layout": "flex",
         "content_width": "boxed",
         "width_unit": "px",

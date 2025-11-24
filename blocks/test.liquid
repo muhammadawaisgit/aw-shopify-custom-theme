@@ -1,0 +1,141 @@
+{% # import schema from '../schema/blocks/test' %}
+
+<div>
+  {% content_for 'blocks' %}
+</div>
+{% schema %}
+{
+  "name": "Test-block",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "label": "Breakpoint",
+      "id": "breakpoint-selector",
+      "options": [
+        {
+          "label": "Desktop",
+          "value": "desktop"
+        },
+        {
+          "label": "Tablet",
+          "value": "tablet"
+        },
+        {
+          "label": "Mobile",
+          "value": "mobile"
+        }
+      ],
+      "default": "desktop"
+    },
+    {
+      "type": "select",
+      "label": "Container Layout",
+      "id": "container_layout",
+      "options": [
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Test Layout",
+      "id": "container_layout",
+      "options": [
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Container Layout",
+      "id": "tablet_container_layout",
+      "options": [
+        {
+          "label": "Off",
+          "value": "off"
+        },
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Test Layout",
+      "id": "tablet_container_layout",
+      "options": [
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Container Layout",
+      "id": "mobile_container_layout",
+      "options": [
+        {
+          "label": "Off",
+          "value": "off"
+        },
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Test Layout",
+      "id": "mobile_container_layout",
+      "options": [
+        {
+          "label": "Flexbox",
+          "value": "flex"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test-block",
+      "category": "layout"
+    }
+  ]
+}
+{% endschema %}
