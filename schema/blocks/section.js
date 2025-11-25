@@ -1,16 +1,16 @@
 import { defineSectionSchema } from 'shopify-schema-utils';
-import { breakpoints, breakpointLabels } from './breakpoints';
-import backgroundSchema from './background-schema';
-import borderSchema from './border-schema';
-import marginSchema from './margin-schema';
-import paddingSchema from './padding-schema';
-import alignSelfSchema from './align-self-schema';
+import { breakpoints, breakpointLabels } from '../breakpoints';
+import backgroundSchema from '../background-schema';
+import borderSchema from '../border-schema';
+import marginSchema from '../margin-schema';
+import paddingSchema from '../padding-schema';
+import alignSelfSchema from '../align-self-schema';
 
 const name = 'container';
 
 export default defineSectionSchema({
     name,
-    class: `child-${name}`,
+    class: `${name}-section`,
     blocks:[{type:'@theme'}],
     settings: [
         // Container Settings

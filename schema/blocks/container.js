@@ -1,10 +1,10 @@
 import { defineSectionSchema } from 'shopify-schema-utils';
-import { breakpoints, breakpointLabels } from './breakpoints';
-import backgroundSchema from './background-schema';
-import borderSchema from './border-schema';
-import marginSchema from './margin-schema';
-import paddingSchema from './padding-schema';
-import alignSelfSchema from './align-self-schema';
+import { breakpoints, breakpointLabels } from '../breakpoints';
+import backgroundSchema from '../background-schema';
+import borderSchema from '../border-schema';
+import marginSchema from '../margin-schema';
+import paddingSchema from '../padding-schema';
+import alignSelfSchema from '../align-self-schema';
 
 const name = 'container';
 
@@ -64,14 +64,14 @@ export default defineSectionSchema({
                 { "label": "mc", "value": "max-content" }
                 ],
                 "default": "px",
-                "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.content_width == 'boxed' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "number",
                 "label": "Width",
                 "id": `${prefix}width`,
                 "placeholder": "1140",
-                "visible_if": "{{ block.settings.content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.content_width == 'boxed' and block.settings.width_unit != 'max-content' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "checkbox",
@@ -85,7 +85,7 @@ export default defineSectionSchema({
                 "label": "height (px)",
                 "id": `${prefix}height`,
                 "default": "auto",
-                "visible_if": "{{ block.settings.custom_height == true and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.custom_height == true and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "number",
@@ -113,7 +113,7 @@ export default defineSectionSchema({
                 { "label": "Column Reverse", "value": "column-reverse" }
                 ],
                 "default": "row",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "select",
@@ -129,7 +129,7 @@ export default defineSectionSchema({
                 { "label": "Space Evenly", "value": "space-evenly" }
                 ],
                 "default": "flex-start",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "select",
@@ -143,7 +143,7 @@ export default defineSectionSchema({
                 { "label": "Stretch", "value": "stretch" }
                 ],
                 "default": "flex-start",
-                "visible_if": "{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'flex' and block.settings.breakpoint-selector == 'desktop' }}`
             },
 
             // Grid Items Settings
@@ -155,7 +155,7 @@ export default defineSectionSchema({
                 "max": 12,
                 "step": 1,
                 "default": 3,
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "range",
@@ -165,14 +165,14 @@ export default defineSectionSchema({
                 "max": 12,
                 "step": 1,
                 "default": 1,
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}`
             },
             {
                 "type": "text",
                 "label": "Grid Gap (px)",
                 "id": `${prefix}grid_gap`,
                 "default": "0px",
-                "visible_if": "{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}"
+                "visible_if": `{{ block.settings.container_layout == 'grid' and block.settings.breakpoint-selector == 'desktop' }}`
             },
 
             // Gap Settings
@@ -234,5 +234,5 @@ export default defineSectionSchema({
             
         ])),
     ],
-    presets:[{name:'Container', category:'t:general.layout'}]
+    presets:[{name:'Container', category:'Builder Elements'}]
 })
