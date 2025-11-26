@@ -5,7 +5,7 @@
         grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
         grid-template-rows: repeat({{ section.settings.grid_rows }}, auto);
     {%- endif %}
-    max-width: {%- if section.settings.content_width == 'boxed' -%} {{section.settings.width}}{{ section.settings.width_unit }} {%- else -%} 100% {%- endif -%};
+    max-width: {%- if section.settings.content_width == 'boxed' and section.settings.width != blank -%} {{section.settings.width}}{{ section.settings.width_unit }} {%- else -%} 100% {%- endif -%};
     height: {%- if section.settings.custom_height %} {{ section.settings.height }}px {%- else -%}auto{%- endif -%};
     min-height: {{ section.settings.min_height }}px;
     flex-direction: {{ section.settings.direction }};

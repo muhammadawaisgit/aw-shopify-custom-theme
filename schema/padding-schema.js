@@ -20,7 +20,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.padding_type == 'custom' and ${item}.settings.breakpoint-selector == 'desktop' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'custom' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "range",
@@ -30,7 +30,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.padding_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "range",
@@ -40,7 +40,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.padding_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "range",
@@ -50,7 +50,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.padding_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
             "type": "range",
@@ -60,7 +60,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.padding_type == 'separate' and ${item}.settings.breakpoint-selector == 'desktop' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
     ]
 }

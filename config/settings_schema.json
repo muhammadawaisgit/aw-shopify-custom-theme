@@ -85,7 +85,7 @@
     "settings": [
       {
         "type": "number",
-        "label": "Mobile (px)",
+        "label": "Tablet (px)",
         "id": "tablet_breakpoint",
         "default": 1024,
       },

@@ -1270,20 +1270,20 @@
       "label": "Background Color",
       "id": "tablet_background_color",
       "default": "transparent",
-      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'classic' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "checkbox",
       "label": "Background Image",
       "id": "tablet_background_image_enabled",
       "default": false,
-      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'classic' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "image_picker",
       "label": "Background Image",
       "id": "tablet_background_image",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_image_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1328,7 +1328,7 @@
         }
       ],
       "default": "center center",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_image_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1345,7 +1345,7 @@
         }
       ],
       "default": "scroll",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_image_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1370,7 +1370,7 @@
         }
       ],
       "default": "no-repeat",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_image_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1391,14 +1391,14 @@
         }
       ],
       "default": "cover",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_image_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "color",
       "label": "First Color",
       "id": "tablet_gradient_first_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1408,14 +1408,14 @@
       "max": 100,
       "unit": "%",
       "default": 0,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "color",
       "label": "Second Color",
       "id": "tablet_gradient_second_color",
       "default": "#ffffff",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1425,7 +1425,7 @@
       "max": 100,
       "unit": "%",
       "default": 100,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1442,14 +1442,14 @@
         }
       ],
       "default": "linear",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Angle (degrees)",
       "id": "tablet_gradient_angle",
       "default": 90,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_background_type == 'gradient' and block.settings.tablet_gradient_type == 'linear' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "header",
@@ -1498,14 +1498,14 @@
       "label": "Border Color",
       "id": "tablet_border_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "checkbox",
       "label": "Custom Borders",
       "id": "tablet_custom_borders",
       "default": false,
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1515,7 +1515,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.custom_borders != true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_border_type != 'none' and block.settings.tablet_custom_borders != true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1525,7 +1525,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_borders == true and block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1535,7 +1535,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_borders == true and block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1545,7 +1545,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_borders == true and block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1555,7 +1555,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_borders == true and block.settings.tablet_border_type != 'none' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "header",
@@ -1577,7 +1577,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == false and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_border_radius == false and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1587,7 +1587,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_border_radius == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1597,7 +1597,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_border_radius == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1607,7 +1607,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_border_radius == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1617,7 +1617,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_custom_border_radius == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "header",
@@ -1636,35 +1636,35 @@
       "label": "Box Shadow Color",
       "id": "tablet_box_shadow_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Horizontal Offset (px)",
       "id": "tablet_box_shadow_h_offset",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Vertical Offset (px)",
       "id": "tablet_box_shadow_v_offset",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Blur Radius (px)",
       "id": "tablet_box_shadow_blur",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Spread Radius (px)",
       "id": "tablet_box_shadow_spread",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1680,7 +1680,7 @@
           "value": "inset"
         }
       ],
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_box_shadow_enabled == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "header",
@@ -1745,7 +1745,7 @@
           "value": "vertical"
         }
       ],
-      "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' and block.settings.margin_type == 'auto' }}"
+      "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' and block.settings.tablet_margin_type == 'auto' }}"
     },
     {
       "type": "range",
@@ -1755,7 +1755,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'custom' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_margin_type == 'custom' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1765,7 +1765,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_margin_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1775,7 +1775,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_margin_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1785,7 +1785,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_margin_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1795,7 +1795,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_margin_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1825,7 +1825,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.padding_type == 'custom' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_padding_type == 'custom' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1835,7 +1835,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_padding_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1845,7 +1845,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_padding_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1855,7 +1855,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_padding_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "range",
@@ -1865,7 +1865,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.tablet_padding_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -2208,20 +2208,20 @@
       "label": "Background Color",
       "id": "mobile_background_color",
       "default": "transparent",
-      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'classic' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "checkbox",
       "label": "Background Image",
       "id": "mobile_background_image_enabled",
       "default": false,
-      "visible_if": "{{ block.settings.background_type == 'classic' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'classic' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "image_picker",
       "label": "Background Image",
       "id": "mobile_background_image",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_image_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2266,7 +2266,7 @@
         }
       ],
       "default": "center center",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_image_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2283,7 +2283,7 @@
         }
       ],
       "default": "scroll",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_image_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2308,7 +2308,7 @@
         }
       ],
       "default": "no-repeat",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_image_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2329,14 +2329,14 @@
         }
       ],
       "default": "cover",
-      "visible_if": "{{ block.settings.background_image_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_image_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "color",
       "label": "First Color",
       "id": "mobile_gradient_first_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2346,14 +2346,14 @@
       "max": 100,
       "unit": "%",
       "default": 0,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "color",
       "label": "Second Color",
       "id": "mobile_gradient_second_color",
       "default": "#ffffff",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2363,7 +2363,7 @@
       "max": 100,
       "unit": "%",
       "default": 100,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2380,14 +2380,14 @@
         }
       ],
       "default": "linear",
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Angle (degrees)",
       "id": "mobile_gradient_angle",
       "default": 90,
-      "visible_if": "{{ block.settings.background_type == 'gradient' and block.settings.gradient_type == 'linear' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_background_type == 'gradient' and block.settings.mobile_gradient_type == 'linear' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "header",
@@ -2436,14 +2436,14 @@
       "label": "Border Color",
       "id": "mobile_border_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "checkbox",
       "label": "Custom Borders",
       "id": "mobile_custom_borders",
       "default": false,
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2453,7 +2453,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.border_type != 'none' and block.settings.custom_borders != true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_border_type != 'none' and block.settings.mobile_custom_borders != true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2463,7 +2463,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_borders == true and block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2473,7 +2473,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_borders == true and block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2483,7 +2483,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_borders == true and block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2493,7 +2493,7 @@
       "max": 20,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_borders == true and block.settings.border_type != 'none' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_borders == true and block.settings.mobile_border_type != 'none' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "header",
@@ -2515,7 +2515,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == false and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_border_radius == false and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2525,7 +2525,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_border_radius == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2535,7 +2535,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_border_radius == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2545,7 +2545,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_border_radius == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2555,7 +2555,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.custom_border_radius == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_custom_border_radius == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "header",
@@ -2574,35 +2574,35 @@
       "label": "Box Shadow Color",
       "id": "mobile_box_shadow_color",
       "default": "#000000",
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Horizontal Offset (px)",
       "id": "mobile_box_shadow_h_offset",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Vertical Offset (px)",
       "id": "mobile_box_shadow_v_offset",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Blur Radius (px)",
       "id": "mobile_box_shadow_blur",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Spread Radius (px)",
       "id": "mobile_box_shadow_spread",
       "default": 0,
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2618,7 +2618,7 @@
           "value": "inset"
         }
       ],
-      "visible_if": "{{ block.settings.box_shadow_enabled == true and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_box_shadow_enabled == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "header",
@@ -2683,7 +2683,7 @@
           "value": "vertical"
         }
       ],
-      "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' and block.settings.margin_type == 'auto' }}"
+      "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' and block.settings.mobile_margin_type == 'auto' }}"
     },
     {
       "type": "range",
@@ -2693,7 +2693,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'custom' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_margin_type == 'custom' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2703,7 +2703,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_margin_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2713,7 +2713,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_margin_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2723,7 +2723,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_margin_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2733,7 +2733,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_margin_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2763,7 +2763,7 @@
       "max": 100,
       "unit": "px",
       "default": 0,
-      "visible_if": "{{ block.settings.padding_type == 'custom' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_padding_type == 'custom' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2773,7 +2773,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_padding_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2783,7 +2783,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_padding_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2793,7 +2793,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_padding_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "range",
@@ -2803,7 +2803,7 @@
       "max": 100,
       "unit": "px",
       "default": 20,
-      "visible_if": "{{ block.settings.padding_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+      "visible_if": "{{ block.settings.mobile_padding_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",

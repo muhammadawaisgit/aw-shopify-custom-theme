@@ -7,38 +7,41 @@ function typographySchema(item, prefix, breakpointLabels){
             "content": "Typography",
             "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
-        {
-            "type": "select",
-            "id": `${prefix}font_family`,
-            "label": "Font Family",
-            "options": [
-                {
-                    "value": "'Work Sans', sans-serif",
-                    "label": "Default"
-                },
-                {
-                    "value": "Montserrat ,'Work Sans', sans-serif",
-                    "label": "Montserrat"
-                },
-                {
-                    "value": "Satoshi,sans-serif",
-                    "label": "Satoshi"
-                },
-                {
-                    "value": "serif",
-                    "label": "Serif"
-                },
-                {
-                    "value": "sans-serif",
-                    "label": "Sans Serif"
-                },
-                {
-                    "value": "monospace",
-                    "label": "Monospace"
-                },
-            ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
-        },
+        ...(prefix === '' ? [
+            {
+                "type": "select",
+                "id": `font_family`,
+                "label": "Font Family",
+                "options": [
+                    {
+                        "value": "'Work Sans', sans-serif",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "Montserrat ,'Work Sans', sans-serif",
+                        "label": "Montserrat"
+                    },
+                    {
+                        "value": "Satoshi,sans-serif",
+                        "label": "Satoshi"
+                    },
+                    {
+                        "value": "serif",
+                        "label": "Serif"
+                    },
+                    {
+                        "value": "sans-serif",
+                        "label": "Sans Serif"
+                    },
+                    {
+                        "value": "monospace",
+                        "label": "Monospace"
+                    },
+                ],
+                "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            },
+        ]:[]),
+        
         {
             "type": "select",
             "label": "Unit",
@@ -117,7 +120,7 @@ function typographySchema(item, prefix, breakpointLabels){
                     "label": "Black"
                 }
             ],
-            "default": "400",
+            ...(prefix === "" ? {"default": "400"} : []),
             "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {
@@ -197,10 +200,10 @@ function typographySchema(item, prefix, breakpointLabels){
             "type": "range",
             "id": `${prefix}line_height`,
             "label": "Line Height",
-            "min": 1,
+            ...(prefix === '' ? {"min": 1} : {"min": 0.5}),
             "max": 5,
             "step": 0.1,
-            "default": 1.2,
+            ...(prefix === '' ? {"default": 1.2} : {"default": 0.5}),
             "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
         },
         {

@@ -1,5 +1,3 @@
-// schemas/blocks/test.js
-
 import { defineSectionSchema } from 'shopify-schema-utils';
 import { breakpoints, breakpointLabels } from '../breakpoints';
 import backgroundSchema from '../background-schema';
