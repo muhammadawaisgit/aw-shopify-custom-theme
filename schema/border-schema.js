@@ -4,7 +4,7 @@ function borderSchema(item, prefix, breakpointLabels){
         {
             "type": "header",
             "content": "Border",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -20,21 +20,21 @@ function borderSchema(item, prefix, breakpointLabels){
             { "label": "Groove", "value": "groove" }
             ],
             "default": "none",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "color",
             "label": "Border Color",
             "id": prefix + "border_color",
             "default": "#000000",
-            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "checkbox",
             "label": "Custom Borders",
             "id": prefix + "custom_borders",
             "default": false,
-            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -44,7 +44,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 20,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.${prefix}custom_borders != true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.${prefix}custom_borders != true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -54,7 +54,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 20,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -64,7 +64,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 20,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -74,7 +74,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 20,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -84,21 +84,21 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 20,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_borders == true and ${item}.settings.${prefix}border_type != 'none' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
 
         // Border Radius Settings
         {
             "type": "header",
             "content": "Border Radius",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "checkbox",
             "label": "Custom Border Radius",
             "id": prefix + "custom_border_radius",
             "default": false,
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -108,7 +108,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == false and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == false and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -118,7 +118,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -128,7 +128,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -138,7 +138,7 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -148,56 +148,56 @@ function borderSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}custom_border_radius == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
 
         // Box Shadow Settings
         {
             "type": "header",
             "content": "Box Shadow",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "checkbox",
             "label": "Enable Box Shadow",
             "id": prefix + "box_shadow_enabled",
             "default": false,
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "color",
             "label": "Box Shadow Color",
             "id": prefix + "box_shadow_color",
             "default": "#000000",
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "number",
             "label": "Horizontal Offset (px)",
             "id": prefix + "box_shadow_h_offset",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "number",
             "label": "Vertical Offset (px)",
             "id": prefix + "box_shadow_v_offset",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "number",
             "label": "Blur Radius (px)",
             "id": prefix + "box_shadow_blur",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "number",
             "label": "Spread Radius (px)",
             "id": prefix + "box_shadow_spread",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -207,7 +207,7 @@ function borderSchema(item, prefix, breakpointLabels){
             { "label": "Outside", "value": "outset" },
             { "label": "Inside", "value": "inset" }
             ],
-            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}box_shadow_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
     ]
 }

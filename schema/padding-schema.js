@@ -2,6 +2,11 @@ function paddingSchema(item, prefix, breakpointLabels){
     return [
         // Padding
         {
+            "type": "header",
+            "content": "Padding",
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
+        },
+        {
             "type": "select",
             "label": "Padding",
             "id": prefix + "padding_type",
@@ -10,7 +15,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             { "label": "Custom", "value": "custom" },
             { "label": "Separate", "value": "separate" }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -20,7 +25,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'custom' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'custom' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -30,7 +35,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -40,7 +45,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -50,7 +55,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -60,7 +65,7 @@ function paddingSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 20,
-            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}padding_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
     ]
 }

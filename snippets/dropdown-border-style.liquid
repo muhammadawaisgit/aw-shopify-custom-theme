@@ -1,0 +1,77 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
+
+{% comment %} <style>   {% endcomment %}
+#shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+    border-style: {{ item.settings.dropdown_border_type }};
+    border-color: {{ item.settings.dropdown_border_color }};
+    /* Border Width */
+    {%- if item.settings.dropdown_custom_borders == true -%}
+        border-width: {{ item.settings.dropdown_border_top }}px {{ item.settings.dropdown_border_right }}px {{ item.settings.dropdown_border_bottom }}px {{ item.settings.dropdown_border_left }}px;
+    {%- else -%}
+        border-width: {{ item.settings.dropdown_border_all }}px;
+    {%- endif -%}
+    /* Border Radius */
+    {%- if item.settings.dropdown_custom_border_radius == true -%}
+        border-radius: {{ item.settings.dropdown_radius_top }}px {{ item.settings.dropdown_radius_right }}px {{ item.settings.dropdown_radius_bottom }}px {{ item.settings.dropdown_radius_left }}px;
+    {%- else -%}
+        border-radius: {{ item.settings.dropdown_border_radius_all }}px;
+    {%- endif -%}
+    box-shadow: {%- if item.settings.dropdown_box_shadow_enabled -%} {{ item.settings.dropdown_box_shadow_h_offset }}px {{ item.settings.dropdown_box_shadow_v_offset }}px {{ item.settings.dropdown_box_shadow_blur }}px {{ item.settings.dropdown_box_shadow_spread }}px {{ item.settings.dropdown_box_shadow_color }} {%- if item.settings.dropdown_box_shadow_position == 'inset' -%} inset {%- endif -%} {%- else -%} none {%- endif -%};
+}
+
+@media (max-width:{{ settings.tablet_breakpoint }}px){
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+        {%- if item.settings.dropdown_tablet_border_type != 'off' -%}
+            border-style: {{ item.settings.dropdown_tablet_border_type }};
+            border-color: {{ item.settings.dropdown_tablet_border_color }};
+            /* Border Width */
+            {%- if item.settings.dropdown_tablet_custom_borders == true -%}
+                border-width: {{ item.settings.dropdown_tablet_border_top }}px {{ item.settings.dropdown_tablet_border_right }}px {{ item.settings.dropdown_tablet_border_bottom }}px {{ item.settings.dropdown_tablet_border_left }}px;
+            {%- else -%}
+                border-width: {{ item.settings.dropdown_tablet_border_all }}px;
+            {%- endif -%}
+        {%- endif -%}
+        /* Border Radius */
+        {%- if item.settings.dropdown_tablet_enable_border_radius == true -%}
+            {%- if item.settings.dropdown_tablet_custom_border_radius == true -%}
+                border-radius: {{ item.settings.dropdown_tablet_radius_top }}px {{ item.settings.dropdown_tablet_radius_right }}px {{ item.settings.dropdown_tablet_radius_bottom }}px {{ item.settings.dropdown_tablet_radius_left }}px;
+            {%- else -%}
+                border-radius: {{ item.settings.dropdown_tablet_border_radius_all }}px;
+            {%- endif -%}
+        {%- endif -%}
+        {%- if item.settings.dropdown_tablet_box_shadow_enabled -%} 
+            box-shadow: {{ item.settings.dropdown_tablet_box_shadow_h_offset }}px {{ item.settings.dropdown_tablet_box_shadow_v_offset }}px {{ item.settings.dropdown_tablet_box_shadow_blur }}px {{ item.settings.dropdown_tablet_box_shadow_spread }}px {{ item.settings.dropdown_tablet_box_shadow_color }} {%- if item.settings.dropdown_tablet_box_shadow_position == 'inset' -%} inset {%- endif -%};
+        {%- endif -%};
+    }
+}
+
+@media (max-width:{{ settings.mobile_breakpoint }}px){
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+        {%- if item.settings.dropdown_mobile_border_type != 'off' -%}
+            border-style: {{ item.settings.dropdown_mobile_border_type }};
+            border-color: {{ item.settings.dropdown_mobile_border_color }};
+            /* Border Width */
+            {%- if item.settings.dropdown_mobile_custom_borders == true -%}
+                border-width: {{ item.settings.dropdown_mobile_border_top }}px {{ item.settings.dropdown_mobile_border_right }}px {{ item.settings.dropdown_mobile_border_bottom }}px {{ item.settings.dropdown_mobile_border_left }}px;
+            {%- else -%}
+                border-width: {{ item.settings.dropdown_mobile_border_all }}px;
+            {%- endif -%}
+        {%- endif -%}
+        /* Border Radius */
+        {%- if item.settings.dropdown_mobile_enable_border_radius == true -%}
+            {%- if item.settings.dropdown_mobile_custom_border_radius == true -%}
+                border-radius: {{ item.settings.dropdown_mobile_radius_top }}px {{ item.settings.dropdown_mobile_radius_right }}px {{ item.settings.dropdown_mobile_radius_bottom }}px {{ item.settings.dropdown_mobile_radius_left }}px;
+            {%- else -%}
+                border-radius: {{ item.settings.dropdown_mobile_border_radius_all }}px;
+            {%- endif -%}
+        {%- endif -%}
+        {%- if item.settings.dropdown_mobile_box_shadow_enabled -%} 
+            box-shadow: {{ item.settings.dropdown_mobile_box_shadow_h_offset }}px {{ item.settings.dropdown_mobile_box_shadow_v_offset }}px {{ item.settings.dropdown_mobile_box_shadow_blur }}px {{ item.settings.dropdown_mobile_box_shadow_spread }}px {{ item.settings.dropdown_mobile_box_shadow_color }} {%- if item.settings.dropdown_mobile_box_shadow_position == 'inset' -%} inset {%- endif -%};
+        {%- endif -%};
+    }
+}

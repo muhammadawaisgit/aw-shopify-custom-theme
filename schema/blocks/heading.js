@@ -145,19 +145,19 @@ export default defineBlockSchema({
                 "visible_if": `{{ block.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
             },
 
-            ...typographySchema('block' ,prefix, breakpointLabels),
+            ...typographySchema('block' ,prefix, breakpointLabels[prefix]),
 
-            ...backgroundSchema('block' ,prefix, breakpointLabels),
+            ...backgroundSchema('block' ,prefix, breakpointLabels[prefix]),
 
-            ...borderSchema('block' ,prefix, breakpointLabels),
+            ...borderSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...marginSchema('block' ,prefix, breakpointLabels),
+            ...marginSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...paddingSchema('block' ,prefix, breakpointLabels),
+            ...paddingSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...alignSelfSchema('block' ,prefix, breakpointLabels),
+            ...alignSelfSchema('block' ,prefix, breakpointLabels[prefix]),
 
-            ...customWidthSchema('block' ,prefix, breakpointLabels),
+            ...customWidthSchema('block' ,prefix, breakpointLabels[prefix]),
 
         ]))
     ],

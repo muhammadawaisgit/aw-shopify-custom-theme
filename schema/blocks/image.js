@@ -205,15 +205,15 @@ export default defineBlockSchema({
                 ],
                 "visible_if": `{{ block.settings.height != blank and block.settings.breakpoint-selector == 'desktop' }}`
             },
-            ...borderSchema('block' ,prefix, breakpointLabels),
+            ...borderSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...marginSchema('block' ,prefix, breakpointLabels),
+            ...marginSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...paddingSchema('block' ,prefix, breakpointLabels),
+            ...paddingSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...alignSelfSchema('block' ,prefix, breakpointLabels),
+            ...alignSelfSchema('block' ,prefix, breakpointLabels[prefix]),
             
-            ...customWidthSchema('block' ,prefix, breakpointLabels),
+            ...customWidthSchema('block' ,prefix, breakpointLabels[prefix]),
         ])),
     ],
     "presets": [

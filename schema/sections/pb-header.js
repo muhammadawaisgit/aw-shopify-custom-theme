@@ -234,12 +234,6 @@ export default defineSectionSchema({
             ...alignSelfSchema('section', prefix, breakpointLabels),
             
         ])),
-        {
-            "type": "link_list",
-            "id": "menu",
-            "label": "Menu",
-            "visible_if": `{{ section.settings.breakpoint-selector == 'desktop' }}`
-        }
     ],
     presets:[{name:'Header Section', category:'t:general.header'}]
 })

@@ -1,0 +1,38 @@
+{% if item == block %}
+    {%- assign shopify_element = 'block' -%}
+{%- else -%}
+    {%- assign shopify_element = 'section' -%}    
+{% endif %}
+
+#shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+    /* Padding */
+    {%- if item.settings.dropdown_padding_type == 'custom' -%}
+        padding: {{ item.settings.dropdown_padding_all }}px;
+    {%- elsif item.settings.dropdown_padding_type == 'separate' -%}
+        padding: {{ item.settings.dropdown_padding_top }}px {{ item.settings.dropdown_padding_right }}px {{ item.settings.dropdown_padding_bottom }}px {{ item.settings.dropdown_padding_left }}px;
+    {%- else -%}
+        padding: {%- if padding != 0 -%}20px{% else %}0px{%- endif -%};
+    {%- endif -%}
+}
+
+@media (max-width:{{ settings.tablet_breakpoint }}px){
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+        /* Padding */
+        {%- if item.settings.dropdown_tablet_padding_type == 'custom' -%}
+            padding: {{ item.settings.dropdown_tablet_padding_all }}px;
+        {%- elsif item.settings.dropdown_tablet_padding_type == 'separate' -%}
+            padding: {{ item.settings.dropdown_tablet_padding_top }}px {{ item.settings.dropdown_tablet_padding_right }}px {{ item.settings.dropdown_tablet_padding_bottom }}px {{ item.settings.dropdown_tablet_padding_left }}px;
+        {%- endif -%}
+    }
+}
+
+@media (max-width:{{ settings.mobile_breakpoint }}px){
+    #shopify-{{ shopify_element }}-{{ item.id }} {{ selector }} {
+        /* Padding */
+        {%- if item.settings.dropdown_mobile_padding_type == 'custom' -%}
+            padding: {{ item.settings.dropdown_mobile_padding_all }}px;
+        {%- elsif item.settings.dropdown_mobile_padding_type == 'separate' -%}
+            padding: {{ item.settings.dropdown_mobile_padding_top }}px {{ item.settings.dropdown_mobile_padding_right }}px {{ item.settings.dropdown_mobile_padding_bottom }}px {{ item.settings.dropdown_mobile_padding_left }}px;
+        {%- endif -%}
+    }
+}

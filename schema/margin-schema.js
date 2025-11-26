@@ -3,8 +3,8 @@ function marginSchema(item, prefix, breakpointLabels){
         // Margin Settings
         {
             "type": "header",
-            "content": "Layout",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "content": "Margin",
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -16,7 +16,7 @@ function marginSchema(item, prefix, breakpointLabels){
             { "label": "Custom", "value": "custom" },
             { "label": "Separate", "value": "separate" }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -31,7 +31,7 @@ function marginSchema(item, prefix, breakpointLabels){
             { "label": "Horzontal", "value": "horzontal" },
             { "label": "Vertical", "value": "vertical" }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' and ${item}.settings.${prefix}margin_type == 'auto' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' and ${item}.settings.${prefix}margin_type == 'auto' }}`
         },
         {
             "type": "range",
@@ -41,7 +41,7 @@ function marginSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'custom' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'custom' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -51,7 +51,7 @@ function marginSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -61,7 +61,7 @@ function marginSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -71,7 +71,7 @@ function marginSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -81,7 +81,7 @@ function marginSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "px",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}margin_type == 'separate' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
     ]
 }

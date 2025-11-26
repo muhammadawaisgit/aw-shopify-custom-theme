@@ -4,7 +4,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
         {
             "type": "header",
             "content": "Background",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -15,7 +15,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Classic", "value": "classic" },
             { "label": "Gradient", "value": "gradient" }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
 
         // Classic Background Settings
@@ -24,20 +24,20 @@ function backgroundSchema(item, prefix, breakpointLabels){
             "label": "Background Color",
             "id": `${prefix}background_color`,
             "default": "transparent",
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'classic' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'classic' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "checkbox",
             "label": "Background Image",
             "id": `${prefix}background_image_enabled`,
             "default": false,
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'classic' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'classic' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "image_picker",
             "label": "Background Image",
             "id": `${prefix}background_image`,
-            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -55,7 +55,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Bottom Right", "value": "bottom right" }
             ],
             "default": "center center",
-            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -66,7 +66,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Fixed", "value": "fixed" }
             ],
             "default": "scroll",
-            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -79,7 +79,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Repeat Y", "value": "repeat-y" }
             ],
             "default": "no-repeat",
-            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -91,7 +91,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Contain", "value": "contain" }
             ],
             "default": "cover",
-            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_image_enabled == true and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
 
         // Gradient Background Settings
@@ -100,7 +100,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             "label": "First Color",
             "id": `${prefix}gradient_first_color`,
             "default": "#000000",
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -110,14 +110,14 @@ function backgroundSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "%",
             "default": 0,
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "color",
             "label": "Second Color",
             "id": `${prefix}gradient_second_color`,
             "default": "#ffffff",
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -127,7 +127,7 @@ function backgroundSchema(item, prefix, breakpointLabels){
             "max": 100,
             "unit": "%",
             "default": 100,
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -138,14 +138,14 @@ function backgroundSchema(item, prefix, breakpointLabels){
             { "label": "Radial", "value": "radial" }
             ],
             "default": "linear",
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "number",
             "label": "Angle (degrees)",
             "id": `${prefix}gradient_angle`,
             "default": 90,
-            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.${prefix}gradient_type == 'linear' and ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.${prefix}background_type == 'gradient' and ${item}.settings.${prefix}gradient_type == 'linear' and ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
     ]
 }

@@ -34,7 +34,7 @@ export default defineSectionSchema({
                         { label: "Grid", value: "grid" }
                     ]
                 },
-                ...backgroundSchema(prefix, breakpointLabels),
+                ...backgroundSchema(prefix, breakpointLabels[prefix]),
                 {
                     type: "select",
                     label: "Test 1 Layout",

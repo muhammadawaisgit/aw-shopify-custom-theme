@@ -685,7 +685,7 @@
     },
     {
       "type": "header",
-      "content": "Layout",
+      "content": "Margin",
       "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' }}"
     },
     {
@@ -793,6 +793,11 @@
       "unit": "px",
       "default": 0,
       "visible_if": "{{ block.settings.margin_type == 'separate' and block.settings.breakpoint-selector == 'desktop' }}"
+    },
+    {
+      "type": "header",
+      "content": "Padding",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'desktop' }}"
     },
     {
       "type": "select",
@@ -1056,7 +1061,7 @@
       "min": 10,
       "max": 100,
       "step": 1,
-      "default": 24,
+      "default": 10,
       "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
@@ -1133,7 +1138,6 @@
           "label": "Capitalize"
         }
       ],
-      "default": "none",
       "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
@@ -1158,7 +1162,6 @@
           "label": "Oblique"
         }
       ],
-      "default": "normal",
       "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
@@ -1442,7 +1445,7 @@
     },
     {
       "type": "header",
-      "content": "Layout",
+      "content": "Margin",
       "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
@@ -1554,6 +1557,11 @@
       "unit": "px",
       "default": 0,
       "visible_if": "{{ block.settings.tablet_margin_type == 'separate' and block.settings.breakpoint-selector == 'tablet' }}"
+    },
+    {
+      "type": "header",
+      "content": "Padding",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1686,13 +1694,13 @@
           "label": "rem"
         }
       ],
-      "visible_if": "{{ block.settings.custom_width_enable == true and block.settings.breakpoint-selector == 'tablet' }}"
+      "visible_if": "{{ block.settings.tablet_custom_width_enable == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "number",
       "label": "Width (px)",
       "id": "tablet_custom_width",
-      "visible_if": "{{ block.settings.custom_width_enable == true and block.settings.breakpoint-selector == 'tablet' }}"
+      "visible_if": "{{ block.settings.tablet_custom_width_enable == true and block.settings.breakpoint-selector == 'tablet' }}"
     },
     {
       "type": "select",
@@ -1817,7 +1825,7 @@
       "min": 10,
       "max": 100,
       "step": 1,
-      "default": 24,
+      "default": 10,
       "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
@@ -1894,7 +1902,6 @@
           "label": "Capitalize"
         }
       ],
-      "default": "none",
       "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
@@ -1919,7 +1926,6 @@
           "label": "Oblique"
         }
       ],
-      "default": "normal",
       "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
@@ -2203,7 +2209,7 @@
     },
     {
       "type": "header",
-      "content": "Layout",
+      "content": "Margin",
       "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
@@ -2315,6 +2321,11 @@
       "unit": "px",
       "default": 0,
       "visible_if": "{{ block.settings.mobile_margin_type == 'separate' and block.settings.breakpoint-selector == 'mobile' }}"
+    },
+    {
+      "type": "header",
+      "content": "Padding",
+      "visible_if": "{{ block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "select",
@@ -2447,13 +2458,13 @@
           "label": "rem"
         }
       ],
-      "visible_if": "{{ block.settings.custom_width_enable == true and block.settings.breakpoint-selector == 'mobile' }}"
+      "visible_if": "{{ block.settings.mobile_custom_width_enable == true and block.settings.breakpoint-selector == 'mobile' }}"
     },
     {
       "type": "number",
       "label": "Width (px)",
       "id": "mobile_custom_width",
-      "visible_if": "{{ block.settings.custom_width_enable == true and block.settings.breakpoint-selector == 'mobile' }}"
+      "visible_if": "{{ block.settings.mobile_custom_width_enable == true and block.settings.breakpoint-selector == 'mobile' }}"
     }
   ],
   "presets": [

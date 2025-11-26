@@ -5,7 +5,7 @@ function typographySchema(item, prefix, breakpointLabels){
         {
             "type": "header",
             "content": "Typography",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         ...(prefix === '' ? [
             {
@@ -38,7 +38,7 @@ function typographySchema(item, prefix, breakpointLabels){
                         "label": "Monospace"
                     },
                 ],
-                "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+                "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
             },
         ]:[]),
         
@@ -65,7 +65,7 @@ function typographySchema(item, prefix, breakpointLabels){
                     "label": "vw"
                 }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -74,8 +74,8 @@ function typographySchema(item, prefix, breakpointLabels){
             "min": 10,
             "max": 100,
             "step": 1,
-            "default": 24,
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            ...(prefix === "" ? {"default": 24} : {"default": 10}),
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -121,7 +121,7 @@ function typographySchema(item, prefix, breakpointLabels){
                 }
             ],
             ...(prefix === "" ? {"default": "400"} : []),
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -146,8 +146,8 @@ function typographySchema(item, prefix, breakpointLabels){
                     "label": "Capitalize"
                 }
             ],
-            "default": "none",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            ...(prefix === "" ? {"default": "none"} : []),
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -168,8 +168,8 @@ function typographySchema(item, prefix, breakpointLabels){
                     "label": "Oblique"
                 }
             ],
-            "default": "normal",
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            ...(prefix === "" ? {"default": "normal"} : []),
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "select",
@@ -194,7 +194,7 @@ function typographySchema(item, prefix, breakpointLabels){
                     "label": "Line Through"
                 }
             ],
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -204,7 +204,7 @@ function typographySchema(item, prefix, breakpointLabels){
             "max": 5,
             "step": 0.1,
             ...(prefix === '' ? {"default": 1.2} : {"default": 0.5}),
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
         {
             "type": "range",
@@ -214,7 +214,7 @@ function typographySchema(item, prefix, breakpointLabels){
             "max": 10,
             "step": 0.1,
             "default": 0,
-            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels[prefix]}' }}`
+            "visible_if": `{{ ${item}.settings.breakpoint-selector == '${breakpointLabels}' }}`
         },
     ]
 }
