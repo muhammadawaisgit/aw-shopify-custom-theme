@@ -32,7 +32,7 @@ export default defineBlockSchema({
             "default": "main-menu"
         },
         ...breakpoints.flatMap(prefix => ([
-            ...customWidthSchema('block',prefix,breakpointLabels),
+            ...customWidthSchema('block',prefix,breakpointLabels[prefix]),
             {
                 "type": "range",
                 "label": "Min Gap",
